@@ -1,5 +1,5 @@
 baseURL: https://thestatsdude.netlify.app/
-title: Your title
+title: Fan Yin
 theme: hugo-theme-m10c
 paginate: 8
 menu:
@@ -17,13 +17,13 @@ menu:
       url: /about/
       weight: 3
 params:
-  author: John Doe
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  author: Fan Yin
+  description: Data Scientist / Statistician at Microsoft
   menu_item_separator: ' - '
   social:
     - icon: github
       name: Github
-      url: https://github.com/gohugoio
-    - icon: twitter
-      name: Twitter
-      url: https://twitter.com/gohugoio
+      url: https://github.com/fyin-stats
+    # - icon: twitter
+    #   name: Twitter
+    #   url: https://twitter.com/gohugoio
