@@ -1,12 +1,8 @@
 ---
 date: "2014-04-02"
 tags:
-- go
-- golang
-- templates
-- themes
-- development
-title: (Hu)go Template Primer
+- statistical decision theory
+title: A self-learning note for statistical decision theory - part 1
 ---
 
 Hugo uses the excellent [Go][] [html/template][gohtmltemplate] library for
