@@ -1,5 +1,5 @@
 ---
-date: "2014-04-02"
+date: "2021-12-23"
 tags:
 - statistical decision theory
 title: A self-learning note for statistical decision theory - part 1
