@@ -1,5 +1,5 @@
 baseURL: https://thestatsdude.netlify.app/
-title: Fan Yin, Ph.D.
+title: Fan Yin
 theme: hugo-theme-m10c
 paginate: 8
 menu:
@@ -18,8 +18,9 @@ menu:
       weight: 3
 params:
   author: Fan Yin
-  description: Data Scientist / Statistician at Microsoft
+  description: Data Scientist / Statistician 
   menu_item_separator: ' - '
+  avatar: /static/avatar.jpg
   social:
     - icon: github
       name: Github
