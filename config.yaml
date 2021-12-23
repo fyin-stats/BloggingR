@@ -19,7 +19,7 @@ menu:
 params:
   author: Fan Yin
   description: Data Scientist / Statistician at Microsoft
-  avatar: /static/DSC09284.JPG
+  avatar: "static/avatar.jpg"
   menu_item_separator: ' - '
   social:
     - icon: github
