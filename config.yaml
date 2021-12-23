@@ -1,0 +1,29 @@
+baseURL: https://thestatsdude.netlify.app/
+title: Fan's blog
+theme: hugo-theme-m10c
+paginate: 8
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 2
+    - identifier: about
+      name: About
+      url: https://fyin-stats.github.io/
+      weight: 3
+params:
+  author: Fan Yin, Ph.D.
+  description: Data Scientist / Statistician at Microsoft
+  menu_item_separator: ' - '
+  social:
+    - icon: github
+      name: Github
+      url: https://github.com/fyin-stats
+    - icon: linkedin
+      name: LinkedIn
+      url: https://www.linkedin.com/in/fan-y-a7973689/
