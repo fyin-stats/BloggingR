@@ -8,4 +8,4 @@ I received my Ph.D. in Statistics from University of California, Irvine in 2020 
 
 My research interests lie on social network analysis, computational statistics, Bayesian analysis, Responsible AI (differential privacy, fairness in machine learning).
 
-I look forward to collaborations and peer review opportunities. Feel free to contact me via email (fyin.andrew@gmail.com).
+I look forward to collaborations and peer review opportunities. Feel free to contact me via email (yinf2@uci.edu).
