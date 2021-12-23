@@ -24,7 +24,6 @@ paginate = 8
 [params]
   author = "Fan Yin"
   description = "Data Scientist / Statistician"
-  avatar = "/avatar.jpg"
   menu_item_separator = " - "
   [[params.social]]
     icon = "github"
