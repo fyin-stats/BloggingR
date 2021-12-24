@@ -2,7 +2,9 @@
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
 date: '2020-12-23T21:13:14-05:00'
-output: html_document
+output:
+  html_notebook:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"
 categories: Statistics
 tags:
 - Statistical Decision Theory

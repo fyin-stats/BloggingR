@@ -3,7 +3,7 @@ title: "Hello R Markdown"
 author: "Fan Yin"
 date: 2020-12-01T21:13:14-05:00
 output:
-  html_document:
+  html_notebook:
     mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
@@ -15,7 +15,9 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 # R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. $\theta$.
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. 
+
+$$\theta$$.
 
 You can embed an R code chunk like this:
 
