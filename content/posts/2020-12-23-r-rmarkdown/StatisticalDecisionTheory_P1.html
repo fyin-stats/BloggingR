@@ -1,24 +1,23 @@
 ---
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
-date: "12/23/2021"
+date: 2020-12-23T21:13:14-05:00
 output: html_document
+categories: ["Statistics"]
+tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 ---
 
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<p>As a statistician who often solves problems from a frequentist perspective but with a Bayesian soul (allegedly), statistical decision theory has always been an intriguing topic to me. Thanks to the holiday season, I finally got a chance to revisit this topic and I hope I can build up a more systematic understanding of it this time. To facilitate my mastery of the knowledge, I plan to learn by writing and sharing. As the very first step of this project, I’d like to cover the basic elements here in this blog post, including - (i) Motivation: what values can statistical decision theory offer? (ii) Notations and key concepts; (iii) Optimality criteria - how do we make decisions?</p>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>The statistical decision theory, as noted by Dr. James O. Berger in his book “Statistical Decision Theory and Bayesian Analysis”, is concerned with the problem of making decisions in the presence of statistical knowledge which can help explain some of the uncertainties involved in the decision-making problem. Typically, the uncertainties are assumed to be represented by unknown quantities (parameters) - for example, the proportion of people for which the drug will prove effective, <span class="math inline">\(\theta\)</span>, which is generally unknown, and one must conduct experiments to obtain statistical information about it. The classical statistics targets at making inference about the parameters based on the sample information only, whereas the statistical decision theory is aimed at combing the sample information with other relevant knowledge (including possible consequences associated with different decisions, a-priori knowledge about the possible values of parameters) to make the  decision.</p>
+<!-- This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. -->
+<!-- When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: -->
+<!-- # ```{r cars} -->
+<!-- # summary(cars) -->
+<!-- # ``` -->
 </div>
 <div id="including-plots" class="section level2">
 <h2>Including Plots</h2>

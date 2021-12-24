@@ -1,30 +1,42 @@
 ---
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
-date: "12/23/2021"
+date: 2020-12-23T21:13:14-05:00
 output: html_document
+categories: ["Statistics"]
+tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+As a statistician who often solves problems from a frequentist perspective but with a Bayesian soul (allegedly), statistical decision theory has always been an intriguing topic to me. Thanks to the holiday season, I finally got a chance to revisit this topic and I hope I can build up a more systematic understanding of it this time. To facilitate my mastery of the knowledge, I plan to learn by writing and sharing. As the very first step of this project, I’d like to cover the basic elements here in this blog post, including - (i) Motivation: what values can statistical decision theory offer? (ii) Notations and key concepts; (iii) Optimality criteria - how do we make decisions?
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Motivation
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+The statistical decision theory, as noted by Dr. James O. Berger in his book "Statistical Decision Theory and Bayesian Analysis", is concerned with the problem of making decisions in the presence of statistical knowledge which can help explain some of the uncertainties involved in the decision-making problem. Typically, the uncertainties are assumed to be represented by unknown quantities (parameters) - for example, the proportion of people for which the drug will prove effective, $\theta$, which is generally unknown, and one must conduct experiments to obtain statistical information about it. The classical statistics targets at making inference about the parameters based on the sample information only, whereas the statistical decision theory is aimed at combing the sample information with other relevant knowledge (including possible consequences associated with different decisions, a-priori knowledge about the possible values of parameters) to make the \textit{optimal} decision.
 
-```{r cars}
-summary(cars)
-```
+<!-- # ```{r cars} -->
+<!-- # summary(cars) -->
+<!-- # ``` -->
 
-## Including Plots
+## Notations and Key Concepts
 
-You can also embed plots, for example:
+\begin{itemize}
+\item Observed data: $X$
+\item A statistical decision: $a$
+\item Parameters (state of the world): $\theta$
+\item A loss function: $L(a, \theta)$
+\item Data generating model: $f(X|\theta)$
+\item A decision function: $a = \delta(X)$
+\end{itemize}
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+The decision-maker picks a decision after observing the data that minimizes the loss. 
+<!-- You can also embed plots, for example: -->
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+<!-- ```{r pressure, echo=FALSE} -->
+<!-- plot(pressure) -->
+<!-- ``` -->
+
+<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
