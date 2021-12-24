@@ -26,17 +26,25 @@ The statistical decision theory, as noted by Dr. James O. Berger in his book "St
 \begin{itemize}
 \item Observed data: $X$
 \item An action: $a \in \mathcal{A}$
+\item A decision function: $a = \delta(X)$
 \item Parameters (state of the world): $\theta \in \Theta$
 \item A loss function: $L(a, \theta)$, where $L(a, \theta) \geqslant 0, \forall a \in \mathcal{A}, \theta \in \Theta$
 \item Data generating model: $f(X|\theta)$
-\item A decision function: $a = \delta(X)$
 \end{itemize}
 
 After observing the data $X$, the decision-maker picks a decision that minimizes the loss $L(\theta, a)$, for the unknown parameters $\theta$. For example, the most commonly used loss functions are listed below 
 
 \begin{itemize}
-\item Squared error: 
-\item Absolute error:
+\item Squared error: $L(\theta, \delta(X)) = (\theta - \delta(X))^2$
+\item Absolute error: $L(\theta, \delta(X)) = |\theta - \delta(X)|$
+\item 
+\begin{align*}
+<!-- \label{eq:LDP_1bit} -->
+\mathcal{A}_{\epsilon, m}(x) = & \begin{cases}
+    1, & \text{with probability} \ \frac{1}{e^{\epsilon} + 1} + \frac{x}{m} \cdot \frac{e^{\epsilon} - 1}{e^{\epsilon} + 1} \\
+    0, & \text{otherwise}
+  \end{cases}
+\end{align*}
 \end{itemize}
 
 <!-- You can also embed plots, for example: -->
