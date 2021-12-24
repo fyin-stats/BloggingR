@@ -37,14 +37,13 @@ After observing the data $X$, the decision-maker picks a decision that minimizes
 \begin{itemize}
 \item Squared error: $L(\theta, \delta(X)) = (\theta - \delta(X))^2$
 \item Absolute error: $L(\theta, \delta(X)) = |\theta - \delta(X)|$
-\item 
-\begin{align*}
-<!-- \label{eq:LDP_1bit} -->
-\mathcal{A}_{\epsilon, m}(x) = & \begin{cases}
-    1, & \text{with probability} \ \frac{1}{e^{\epsilon} + 1} + \frac{x}{m} \cdot \frac{e^{\epsilon} - 1}{e^{\epsilon} + 1} \\
-    0, & \text{otherwise}
-  \end{cases}
-\end{align*}
+<!-- \item  -->
+<!-- \begin{align*} -->
+<!-- \mathcal{A}_{\epsilon, m}(x) = & \begin{cases} -->
+<!--     1, & \text{with probability} \ \frac{1}{e^{\epsilon} + 1} + \frac{x}{m} \cdot \frac{e^{\epsilon} - 1}{e^{\epsilon} + 1} \\ -->
+<!--     0, & \text{otherwise} -->
+<!--   \end{cases} -->
+<!-- \end{align*} -->
 \end{itemize}
 
 <!-- You can also embed plots, for example: -->
