@@ -1,10 +1,12 @@
 ---
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
-date: 2020-12-23T21:13:14-05:00
+date: '2020-12-23T21:13:14-05:00'
 output: html_document
-categories: ["Statistics"]
-tags: ["Statistical Decision Theory", "Bayesian Analysis"]
+categories: Statistics
+tags:
+- Statistical Decision Theory
+- Bayesian Analysis
 ---
 
 ```{r setup, include=FALSE}

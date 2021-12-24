@@ -1,10 +1,12 @@
 ---
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
-date: 2020-12-23T21:13:14-05:00
+date: '2020-12-23T21:13:14-05:00'
 output: html_document
-categories: ["Statistics"]
-tags: ["Statistical Decision Theory", "Bayesian Analysis"]
+categories: Statistics
+tags:
+- Statistical Decision Theory
+- Bayesian Analysis
 ---
 
 
@@ -13,15 +15,18 @@ tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
 <p>The statistical decision theory, as noted by Dr. James O. Berger in his book “Statistical Decision Theory and Bayesian Analysis”, is concerned with the problem of making decisions in the presence of statistical knowledge which can help explain some of the uncertainties involved in the decision-making problem. Typically, the uncertainties are assumed to be represented by unknown quantities (parameters) - for example, the proportion of people for which the drug will prove effective, <span class="math inline">\(\theta\)</span>, which is generally unknown, and one must conduct experiments to obtain statistical information about it. The classical statistics targets at making inference about the parameters based on the sample information only, whereas the statistical decision theory is aimed at combing the sample information with other relevant knowledge (including possible consequences associated with different decisions, a-priori knowledge about the possible values of parameters) to make the  decision.</p>
-<!-- This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. -->
-<!-- When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: -->
 <!-- # ```{r cars} -->
 <!-- # summary(cars) -->
 <!-- # ``` -->
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="/posts/2020-12-23-r-rmarkdown/StatisticalDecisionTheory_P1_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="notations-and-key-concepts" class="section level2">
+<h2>Notations and Key Concepts</h2>
+
+<p>After observing the data <span class="math inline">\(X\)</span>, the decision-maker picks a decision that minimizes the loss <span class="math inline">\(L(\theta, a)\)</span>, for the unknown parameters <span class="math inline">\(\theta\)</span>. For example, the most commonly used loss functions are listed below</p>
+
+<!-- You can also embed plots, for example: -->
+<!-- ```{r pressure, echo=FALSE} -->
+<!-- plot(pressure) -->
+<!-- ``` -->
+<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
 </div>
