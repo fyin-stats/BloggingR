@@ -1,5 +1,5 @@
 baseURL: https://thestatsdude.netlify.app/
-title: Fan's blog
+title: TheStatsDude's blog
 theme: hugo-theme-m10c
 paginate: 8
 menu:
