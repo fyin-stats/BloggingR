@@ -5,7 +5,7 @@ paginate: 8
 menu:
   main:
     - identifier: home
-      name: Home
+      name: Blog Home
       url: /
       weight: 1
     - identifier: tags
