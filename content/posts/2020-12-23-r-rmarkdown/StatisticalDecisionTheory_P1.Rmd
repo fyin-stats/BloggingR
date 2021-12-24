@@ -25,14 +25,20 @@ The statistical decision theory, as noted by Dr. James O. Berger in his book "St
 
 \begin{itemize}
 \item Observed data: $X$
-\item A statistical decision: $a$
-\item Parameters (state of the world): $\theta$
-\item A loss function: $L(a, \theta)$
+\item An action: $a \in \mathcal{A}$
+\item Parameters (state of the world): $\theta \in \Theta$
+\item A loss function: $L(a, \theta)$, where $L(a, \theta) \geqslant 0, \forall a \in \mathcal{A}, \theta \in \Theta$
 \item Data generating model: $f(X|\theta)$
 \item A decision function: $a = \delta(X)$
 \end{itemize}
 
-The decision-maker picks a decision after observing the data that minimizes the loss. 
+After observing the data $X$, the decision-maker picks a decision that minimizes the loss $L(\theta, a)$, for the unknown parameters $\theta$. For example, the most commonly used loss functions are listed below 
+
+\begin{itemize}
+\item Squared error: 
+\item Absolute error:
+\end{itemize}
+
 <!-- You can also embed plots, for example: -->
 
 <!-- ```{r pressure, echo=FALSE} -->
