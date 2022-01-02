@@ -2,16 +2,14 @@
 title: "A self-learning note for statistical decision theory - part 1"
 author: "Fan Yin"
 date: '2020-12-23T21:13:14-05:00'
-output:
-  html_notebook:
-    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"
+output: html_document
 categories: Statistics
 tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 ---
 
 
 
-<p>As a statistician who often solves problems from a frequentist perspective but with a Bayesian soul (allegedly), statistical decision theory has always been an intriguing topic to me. Thanks to the holiday season, I finally got a chance to revisit this topic and I hope I can build up a more systematic understanding of it this time. To facilitate my mastery of the knowledge, I plan to learn by writing and sharing. As the very first step of this project, I’d like to cover the basic elements here in this blog post, including - (i) Motivation: what values can statistical decision theory offer? (ii) Notations and key concepts; (iii) Optimality criteria - how do we make decisions?</p>
+<p>As a statistician who often solves problems from a frequentist perspective but with a Bayesian soul (allegedly), statistical decision theory has always been an intriguing topic to me. Thanks to the holiday season, I finally got a chance to revisit this topic and I hope I can build up a more systematic understanding of it this time. To facilitate my mastery of the knowledge, I plan to learn by writing and sharing. As the very first step of this project, I’d like to cover the basic elements here in this blog post, including - (i) Motivation: what values can statistical decision theory offer? (ii) Notations and key concepts; (iii) Optimality criteria - how do we pick the  decision among candidate decisions?</p>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
 <p>The statistical decision theory, as noted by Dr. James O. Berger in his book “Statistical Decision Theory and Bayesian Analysis”, is concerned with the problem of making decisions in the presence of statistical knowledge which can help explain some of the uncertainties involved in the decision-making problem. Typically, the uncertainties are assumed to be represented by unknown quantities (parameters) - for example, the proportion of people for which the drug will prove effective, <span class="math inline">\(\theta\)</span>, which is generally unknown, and one must conduct experiments to obtain statistical information about it. The classical statistics targets at making inference about the parameters based on the sample information only, whereas the statistical decision theory is aimed at combing the sample information with other relevant knowledge (including possible consequences associated with different decisions, a-priori knowledge about the possible values of parameters) to make the  decision.</p>
@@ -21,12 +19,92 @@ tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 </div>
 <div id="notations-and-key-concepts" class="section level2">
 <h2>Notations and Key Concepts</h2>
-
-<p>After observing the data <span class="math inline">\(X\)</span>, the decision-maker picks a decision that minimizes the loss <span class="math inline">\(L(\theta, a)\)</span>, for the unknown parameters <span class="math inline">\(\theta\)</span>. For example, the most commonly used loss functions are listed below</p>
-
+<p>Notations:</p>
+<ul>
+<li>Observed data: <span class="math inline">\(X\)</span></li>
+<li>An action: <span class="math inline">\(a \in \mathcal{A}\)</span></li>
+<li>A decision rule: <span class="math inline">\(a = \delta(X)\)</span></li>
+<li>Parameters (state of the world): <span class="math inline">\(\theta \in \Theta\)</span></li>
+<li>A loss function: <span class="math inline">\(L(a, \theta)\)</span>, where <span class="math inline">\(L(a, \theta) \geqslant 0, \forall a \in \mathcal{A}, \theta \in \Theta\)</span></li>
+<li>Data generating model: <span class="math inline">\(f(X|\theta)\)</span></li>
+</ul>
+<!-- \begin{itemize} -->
+<!-- \item Observed data: $X$ -->
+<!-- \item An action: $a \in \mathcal{A}$ -->
+<!-- \item A decision rule: $a = \delta(X)$ -->
+<!-- \item Parameters (state of the world): $\theta \in \Theta$ -->
+<!-- \item A loss function: $L(a, \theta)$, where $L(a, \theta) \geqslant 0, \forall a \in \mathcal{A}, \theta \in \Theta$ -->
+<!-- \item Data generating model: $f(X|\theta)$ -->
+<!-- \end{itemize} -->
+<p>The most commonly used loss functions include</p>
+<!-- \begin{itemize} -->
+<ul>
+<li>Squared error: <span class="math inline">\(L(\theta, \delta(X)) = (\theta - \delta(X))^2\)</span></li>
+<li>Absolute error: <span class="math inline">\(L(\theta, \delta(X)) = |\theta - \delta(X)|\)</span></li>
+</ul>
+<!-- \end{itemize} -->
+<div id="frequentist-risk" class="section level3">
+<h3>Frequentist risk</h3>
+<p>The frequentist decision theory relies upon the idea of evaluating how much we would “expect” to lose if we use <span class="math inline">\(\delta(X)\)</span> repeatedly with varying data that arise from the data generating model <span class="math inline">\(f(X|\theta)\)</span>. The risk function of a decision rule is defined as</p>
+<p><span class="math display">\[ R(\theta, \delta) = \mathbb{E}_{f(X|\theta)}[L(\theta, \delta(X))]\]</span></p>
+<p>where the expectation is taken over all possible data. With the risk function in place, a frequentist picks a decision rule that minimizes the risk.</p>
+<!-- ### Bayes risk -->
+<!-- Given a prior distribution $\pi$ on $\Theta$, the Bayes risk of a decision rule $\delta$ is defined as -->
+<!-- $$ r(\pi, \delta) = \mathbb{E}_{\pi(\theta)}[R(\theta, \delta)] $$ -->
+<!-- where the expectation is taken over $\theta$. A Bayesian seeks for a decision rule that minimizes the Bayes risk. -->
+</div>
+</div>
+<div id="comparing-decision-rules" class="section level2">
+<h2>Comparing decision rules</h2>
+<p>We note that the ranking provided by the frequentist risk is a uni-dimensional function of decision rules only for every fixed value of <span class="math inline">\(\theta\)</span>. Therefore, in order to obtain a global comparison of the decision rules, we might want to aggregate the multi-dimensional ranking into a global ranking. We shall discuss the three most commonly used ideas (the first two are frequentist) in this section.</p>
+<div id="admissibility" class="section level3">
+<h3>Admissibility</h3>
+<p>The idea of admissibility builds upon the notion of dominance relationship between decision rules. A decision rule is said to dominate another decision rule <span class="math inline">\(\delta&#39;\)</span> if</p>
+<p><span class="math display">\[ R(\delta, \theta) \leqslant R(\delta&#39;, \theta) \]</span>
+for all <span class="math inline">\(\theta\)</span>, and</p>
+<p><span class="math display">\[ R(\delta, \theta) &lt; R(\delta&#39;, \theta) \]</span></p>
+<p>for at least one <span class="math inline">\(\theta\)</span>. Such decision rules are called admissible, whereas all other decision rules are inadmissible. It is worth noting here that the dominance relationship only generates a partial ordering among decision rules (not all decision rules are comparable).</p>
+</div>
+<div id="minimaxity" class="section level3">
+<h3>Minimaxity</h3>
+<p>The idea of minimaxity is motivated by considering the worst-case risk for each fixed <span class="math inline">\(\delta\)</span> under all possible values of <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[ \tilde{R}(\delta) = sup_{\theta} R(\delta, \theta) \]</span></p>
+<p>followed by a comparison on the worse-case risk. A minimax decision rule (if exists), solves the problem below</p>
+<p><span class="math display">\[ \delta^{*} = argmin_{\delta} \tilde{R}(\delta) \]</span></p>
+<!-- Based on the above definitions, it is natural to derive the following fact - if a decision rule $\delta^{*}$ has constant risk and is admissible, then it is a minimax decision rule (proof by contradiction).  -->
+</div>
+<div id="bayes-risk" class="section level3">
+<h3>Bayes risk</h3>
+<p>From a Bayesian perspective, as the existence of prior information about <span class="math inline">\(\theta\)</span> is acknowledged, we can actually leverage the prior to trade off the risk across <span class="math inline">\(\theta\)</span>.</p>
+<p>Given a prior distribution <span class="math inline">\(\pi\)</span> on <span class="math inline">\(\Theta\)</span>, the Bayes risk of a decision rule <span class="math inline">\(\delta\)</span> is defined as</p>
+<p><span class="math display">\[ r(\pi, \delta) = \mathbb{E}_{\pi(\theta)}[R(\theta, \delta)] \]</span></p>
+<p>where the expectation is taken over <span class="math inline">\(\theta\)</span>. A Bayesian seeks for a decision rule that minimizes the Bayes risk, and such a decision rule is called Bayes rule.</p>
+<!-- We note that if the prior distribution $\pi(\theta)$ is strictly positive and the Bayes decision rule $\delta^{*}$ has finite risk and continuous in $\theta$, then it is admissible (proof by contradiction).  -->
+</div>
+<div id="relationships-between-these-comparison-criteria" class="section level3">
+<h3>Relationships between these comparison criteria</h3>
+<div id="admissible-rule-and-minimax-rule" class="section level4">
+<h4>Admissible rule and Minimax rule</h4>
+<p><strong>Statement</strong>: If <span class="math inline">\(\delta^{*}\)</span> has constant risk and is admissible, then we can show it is a minimax decision rule.</p>
+<p><strong>Proof</strong>: Assuming <span class="math inline">\(\delta^{*}\)</span> it is not a minimax decision rule - thus there must exist another decision rule <span class="math inline">\(\delta&#39;\)</span> which has smaller minimax risk than <span class="math inline">\(\delta^{*}\)</span>. As a result, for an arbitrary <span class="math inline">\(\theta&#39;\)</span> we have</p>
+<p><span class="math display">\[ R(\theta&#39;, \delta&#39;) \leqslant sup_{\theta} R(\theta, \delta&#39;) = \tilde{R}(\delta&#39;) &lt; \tilde{R}(\delta^{*}) = sup_{\theta} R(\theta, \delta^{*}) \stackrel{\delta^{*} \ \text{has constant risk}}{=} R(\theta&#39;, \delta^{*}) \]</span></p>
+<p>which contradicts with the admissibility of <span class="math inline">\(\delta^{*}\)</span>.</p>
+</div>
+<div id="bayes-rule-and-admissible-rule" class="section level4">
+<h4>Bayes rule and admissible rule</h4>
+<p><strong>Statement</strong>: If the prior <span class="math inline">\(\pi(\theta)\)</span> is strictly positive and the Bayes decision rule <span class="math inline">\(\delta^{*}\)</span> has finite risk and is continuous in <span class="math inline">\(\theta\)</span>, then it is admissible (proof by contradiction).</p>
+<p><strong>Proof</strong>: Let’s suppose that <span class="math inline">\(\delta^{*}\)</span> is not admissible, thus we must have another decision rule <span class="math inline">\(\delta&#39;\)</span> that dominates <span class="math inline">\(\delta^{*}\)</span>. This implies</p>
+<p><span class="math display">\[ r(\pi, \delta&#39;) = \int R(\theta, \delta&#39;) \pi(\theta) d\theta \stackrel{}{&lt;} \int R(\theta, \delta^{*}) \pi(\theta) d\theta = r(\pi, \delta^{*}) \]</span></p>
+<p>which contradicts with the fact that <span class="math inline">\(\delta^{*}\)</span> is the Bayes rule.</p>
+<!-- #### Bayes rule and minimax rule -->
+<!-- **Statement**: The Bayes risk evaluated at the Bayes rule $\delta^{*}$ is always smaller than the minimax risk.  -->
+<!-- **Proof**: Recall the definition of Bayes risk -->
+<!-- $$ r(\pi, \delta^{*}) = inf_{\delta} r(\pi, \delta) \leqslant sup_{\pi}inf_{\delta}r(\pi, \delta) \leqslant inf_{\delta}sup_{\pi}r(\pi, \delta)$$ -->
 <!-- You can also embed plots, for example: -->
 <!-- ```{r pressure, echo=FALSE} -->
 <!-- plot(pressure) -->
 <!-- ``` -->
 <!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
+</div>
+</div>
 </div>

@@ -1,0 +1,95 @@
+---
+title: "Business Data Science - Experiments"
+author: "Fan Yin"
+date: '2021-01-01T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Experiments", "Causal Inference"]
+---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+
+<p>As a statistician whose PhD work was concentrated on computational statistics, my expertise and mindset has gravitated towards how we can develope novel algorithms to enable faster estimations for statistical models over the years. Though I very much enjoyed reading books and papers about topics like variance reduction techniques for Monte Carlo simulations, Markov Chain Monte Carlo, approximate Bayesian computation, I always had a feeling that the prominence of my research has to build upon the assumption that those statistical models have to be meaningful to people at the first place to be worth being computed faster.</p>
+<p>Now working as a statistician in industry, I still read computational statistics work for fun at times but my mission has switched to how I can effectively extract information from data to better quantify the relationships between variables and to drive better business decisions. Therefore, the ability to use data to understand if certain product changes can  better user experience, higher revenues, etc becomes critical. Throughout my statistics education from college to grad school, I’ve got exposed to a good portfolio of statistcal methods, including but not limited to two-sample tests, analysis of variance, linear models, generalized linear models and time series modeling, but a more systematic knowledge of these methods and even a philosophical understanding of causal inference becomes necessary. To this end, I plan to read the following books in the years of 2022</p>
+
+<p>As a starting point, I’d like to summarize my learning from reading through the Chapter 5 (Experiments) of the book Business Data Science during my Christmas holiday.</p>
+<div id="why-experiments" class="section level2">
+<h2>Why experiments?</h2>
+<p>Although correlation might be all that we need in some scenarios (for example, we might recommend movie  to those who watched movie  without recognizing the plausible underlying fact that these preferences can be caused by a third unseen signal, which is they all have very young kids who like cartoon musicals),  and for many real-world business problems it is critical for us to know if/how an  product change or price move alone can affect the outcome of interest (e.g., customer behavior, revenue, etc.). In scientific research, experiments are used for measuring the effect of an action is an experiment as we are able to manipulate the treatment variable independently from all other upstream influences to assess its impact on the outcome of interest. In the sections below, I shall first cover the gold-standard for establish causal statements, randomized controlled trials, followed by several near experimental methods, including diff-in-diff analysis, regression discontinuity and instrumental variables. In particular, I plan to leave the summary of instrumental variable method in a separate blog due to its intricacy.</p>
+</div>
+<div id="randomized-controlled-trials-rcts" class="section level2">
+<h2>Randomized Controlled Trials (RCTs)</h2>
+<p>The RCTs are arguably the gold standard among various possible forms of experiments as we can assign the treatment to subjects from the population of interest in a completely random manner to eliminate any dependence between the treatment variable and all other upstream influences.</p>
+<div id="estimation-and-inference-of-average-treatment-effect" class="section level3">
+<h3>Estimation and Inference of average treatment effect</h3>
+<p>Under RCT, it is easy to estimate the  (ATE) as the mean difference between the groups (indicated by the treatment indicator) under comparison <span class="math inline">\(ATE = \mathbb{E}(y|d=1) - \mathbb{E}(y|d=0)\)</span> by</p>
+<p><span class="math display">\[ \widehat{ATE} = \bar{y}_{1} - \bar{y}_{0}  \]</span></p>
+<p>where <span class="math inline">\(\bar{y}_{k} = \sum_{i: d_{i} = k} y_{i}\)</span>, <span class="math inline">\(k = 0, 1\)</span>, corresponds the sample means for two groups.</p>
+<p>Under the assumptions of experimental units being independent from each other, we can estimate the variance of our estimator as</p>
+<p><span class="math display">\[ Var(\bar{y}_{1} - \bar{y}_{0}) = Var(\bar{y}_{1}) + Var(\bar{y}_{0}) = \frac{1}{n_{0}} \frac{\sum_{i:d_{i}=0}(y_{i}-\bar{y}_{0})^2}{n_{0}-1} + \frac{1}{n_{1}} \frac{\sum_{i:d_{i}=1}(y_{i}-\bar{y}_{1})^2}{n_{1}-1} \]</span>
+and therefore construct the <span class="math inline">\((1-\alpha)\%\)</span> confidence interval as</p>
+<p><span class="math display">\[ (\bar{y}_{1} - \bar{y}_{0}) \pm z_{\alpha} * \sqrt{(Var(\bar{y}_{1} - \bar{y}_{0}))} \]</span></p>
+<p>where <span class="math inline">\(z_{\alpha}\)</span> denotes the upper-<span class="math inline">\(\alpha\)</span> quantile of a standard normal distribution.</p>
+<!-- ### Uncertainty quantification -->
+<!-- Under the assumptions of experimental units being independent from each other, we can estimate the standard error  -->
+</div>
+<div id="practical-knowledge" class="section level3">
+<h3>Practical knowledge</h3>
+<p>The RCTs may appear to be easy conceptually, but one must be very aware of many practical considerations for the successful practice. Although we have to acknowledge perfect experiments are rare, this does not imply that we will just stay there and do nothing.</p>
+<div id="checking-randomization" class="section level4">
+<h4>Checking randomization</h4>
+<p>Being able to randomly assign the treatment to individuals serves as the fundamental building block for RCTs, but it is difficult to make sure that treatment is truly randomly assigned to subjects in practice. A common practice for online platforms is to first run ``AA’’ tests (both groups receive the same treatment) and then conduct further investigations if the result turns out to be statistically significant.</p>
+<p>In some cases, the root cause of imperfect randomization might be the selection bias along known characteristics - it is important to include those characteristics as covariates in the analysis in order to get an unbiased estimate of ATE.</p>
+</div>
+<div id="dependence-between-subjects" class="section level4">
+<h4>Dependence between subjects</h4>
+<p>The dependence between subjects mainly affect the uncertainty estimates and three commonly used techniques include</p>
+
+</div>
+<div id="unrepresentative-samples" class="section level4">
+<h4>Unrepresentative samples</h4>
+<p>Weighting is typically used to map from the sample of individuals in the experiment to the future treatment population if we know certain subpopulations are harder to be sampled.
+<!-- #### Perfect experiments are rare -->
+<!-- We have to acknowledge perfect experiments are rare but this does not imply we will just stay there and do nothing.  --></p>
+</div>
+<div id="improving-sensitivity" class="section level4">
+<h4>Improving sensitivity</h4>
+<p>It is always desirable to achieve trustworthy results with less data to accelerate innovations, and below are two possible directions to improve sensitivity in experiments</p>
+
+<!-- #### Other considerations -->
+<!-- method (point estimate and uncertainty estimate) -->
+<!-- typical problems -->
+</div>
+</div>
+</div>
+<div id="diff-in-diff-analysis" class="section level2">
+<h2>Diff-in-diff analysis</h2>
+<p>The diff-in-diff analysis applies when you have two groups whose pretreatment differences can be isolated and modeled so that post-treatment differences are the basis for causal estimates of the treatment effect. The key assumptions here include</p>
+
+<p>A famous class of questions that can be solved by diff-in-diff analysis is the optimization of search engine marketing - it is critical for search engines / advertisers to understand the effect of paid search advertising. However, this is not an easy problem for the following reasons -</p>
+
+<p>To tackle this problem, Blake et al. managed to convince the powers at eBay to run a large-scale experiment where SEM was turned off for a portion of users - eBay decided to stop biddihng on any AdWords for 65 of 210 ``designated market areas’’ (DMA) in the US for about eight weeks in 2012. The model they use to estimate the effect is linear model as follows</p>
+<p><span class="math display">\[ \mathbb{E}(y_{it}) = \alpha + \beta_{d} d_{i} + \beta_{t} t + \gamma d_{i} t \]</span>
+and</p>
+<p><span class="math display">\[ \mathbb{E}(y_{it}) = \alpha_{i} + \beta_{d} d_{i} + \beta_{t} t + \gamma d_{i} t \]</span>
+where <span class="math inline">\(i\)</span> is the index of DMA, <span class="math inline">\(d_{i}=1\)</span> indicates the corresponding DMA is on the treatment group, and <span class="math inline">\(t = 0, 1\)</span> denotes the pre and post treatment era, respectively. Note <span class="math inline">\(\gamma\)</span> here represents the treatment effect of interest. It is worth noting that the difference between the above two methods is that the latter takes the baseline difference across DMAs into account and hence makes the assumption of independent errors more plausible.</p>
+</div>
+<div id="regression-discontinuity-rd" class="section level2">
+<h2>Regression discontinuity (RD)</h2>
+<p>Regression discontinuity (RD) takes advantage of another common near-experimental design where the treatment assignment is determined by a threshold on some ``forcing variable’’, and subjects that are close to the threshold, on either side, are comparable for causal estimation purposes. The nice thing about a RD is that we know the only confounding variable that we need to control for is the the forcing variable.</p>
+<p>One famous class of problems that can be analyzed using RD is digital marketing under which the ad display depends upon whether the highest ad auction ``score’’ passes a reserve threshold. In strict RD, the treatment is determined entirely by the forcing variable so we just need to control for that variable. The key assumption underlying the RDS analysis is the continuity assumption, that is, if the threshold were to move slightly, subjects switching treatment groups will behave similarly to those near them in their  treatment group. In other words, we can look at the relationship between the forcing variable and the response on one side of the threshold and extrapolate to the other side.</p>
+<p>Using the potential outcomes notation, let <span class="math inline">\(y_{i}(d)\)</span> denotes the potential outcome for the <span class="math inline">\(i\)</span>-th customer under treatment <span class="math inline">\(d\)</span>. Given the actual realized treatment group <span class="math inline">\(d_{i}\)</span>, we have <span class="math inline">\(y_{i}(d_{i})\)</span> as its observed response. Consider the forcing variable <span class="math inline">\(r_{i}\)</span>, the location of which relative to the treatment threshold determines the treatment status. Limiting the question here to binary treatments, the treatment allocation with forcing variable <span class="math inline">\(r_{i}\)</span> is then</p>
+<p><span class="math display">\[ d_{i} = I(r_{i} &gt; 0) \]</span></p>
+<p>By construction, we have treatment allocation is independent of the response given <span class="math inline">\(r_{i}\)</span></p>
+<p><span class="math display">\[ [y_{i}(0), y_{i}(1)] \perp d_{i} | r_{i}  \]</span>
+Therefore, the important continuity assumption can be written as follows</p>
+<p><span class="math display">\[ \mathbb{E}[y_{i}(d) | r = -\epsilon] \approx \mathbb{E}[y_{i}(d) | r = 0] \approx \mathbb{E}[y_{i}(d) | r = \epsilon]   \]</span>
+where <span class="math inline">\(\epsilon\)</span> is a small number that specifies the range within which the continuity assumption holds.</p>
+<p>Given a fixed <span class="math inline">\(\epsilon\)</span>, we filter out those data with <span class="math inline">\(r_{i}\)</span> falling outside <span class="math inline">\([-\epsilon, \epsilon]\)</span>, and then fit an ordinary least squares line to the remaining data under the following model specification</p>
+<p><span class="math display">\[ \mathbb{E}(y_{i}) = \alpha + \gamma I(r_{i} &gt; 0) + r_{i} (\beta_{0} + \beta_{1} I(r_{i} &gt; 0)) \]</span>
+Note that the treatment effect is parameterized by <span class="math inline">\(\gamma\)</span> in the model above, and we are only able to learn about the treatment effect at the threshold. As any RD analysis is sensitive to the size of the window size <span class="math inline">\(\epsilon\)</span>, it is advisable to try a range of window sizes and assess the stability of the results within a range of plausible values.</p>
+<!-- \begin{itemize} -->
+<!-- \item Continuity assumption: if the threshold were to move slightly, subjects switching treatment groups will behave similarly to those near them in their \emph{new} treatment group. In other words, we can look at the relationship between the forcing variable and the response on one side of the threshold and extrapolate to the other side.  -->
+<!-- \item  -->
+<!-- \end{itemize} -->
+</div>
