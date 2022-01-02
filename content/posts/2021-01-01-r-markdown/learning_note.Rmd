@@ -15,11 +15,10 @@ As a statistician whose PhD work was concentrated on computational statistics, m
 
 Now working as a statistician in industry, I still read computational statistics work for fun at times but my mission has switched to how I can effectively extract information from data to better quantify the relationships between variables and to drive better business decisions. Therefore, the ability to use data to understand if certain product changes can \emph{cause} better user experience, higher revenues, etc becomes critical. Throughout my statistics education from college to grad school, I've got exposed to a good portfolio of statistcal methods, including but not limited to two-sample tests, analysis of variance, linear models, generalized linear models and time series modeling, but a more systematic knowledge of these methods and even a philosophical understanding of causal inference becomes necessary. To this end, I plan to read the following books in the years of 2022 
 
-\begin{itemize}
-\item Business Data Science - by Matt Taddy
-\item Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction - by Donald Rubin and Guido Imbens
-\item Data Analysis Using Regression and Multilevel/Hierarchical Models - by Andrew Gelman and Jennifer Hill
-\end{itemize}
+
+* Business Data Science - by Matt Taddy
+* Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction - by Donald Rubin and Guido Imbens
+* Data Analysis Using Regression and Multilevel/Hierarchical Models - by Andrew Gelman and Jennifer Hill
 
 As a starting point, I'd like to summarize my learning from reading through the Chapter 5 (Experiments) of the book Business Data Science during my Christmas holiday. 
 
@@ -59,11 +58,9 @@ In some cases, the root cause of imperfect randomization might be the selection 
 #### Dependence between subjects
 The dependence between subjects mainly affect the uncertainty estimates and three commonly used techniques include
 
-\begin{itemize}
-\item Aggregate the data to enable treatment effect estimation at higher level under which the assumption of independent errors holds.
-\item Blocked bootstrap to resample at higher level under which the assumption of independent errors holds.
-\item Huber-White heteroskedastic consistent variance estimator. 
-\end{itemize}
+* Aggregate the data to enable treatment effect estimation at higher level under which the assumption of independent errors holds.
+* Blocked bootstrap to resample at higher level under which the assumption of independent errors holds.
+* Huber-White heteroskedastic consistent variance estimator. 
 
 #### Unrepresentative samples
 Weighting is typically used to map from the sample of individuals in the experiment to the future treatment population if we know certain subpopulations are harder to be sampled. 
@@ -73,10 +70,10 @@ Weighting is typically used to map from the sample of individuals in the experim
 #### Improving sensitivity
 It is always desirable to achieve trustworthy results with less data to accelerate innovations, and below are two possible directions to improve sensitivity in experiments 
 
-\begin{itemize}
-\item Designing more sensitive metric (e.g., \href{https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/beyond-power-analysis-metric-sensitivity-in-a-b-tests/})
-\item Variance reduction for the mean estimator (e.g., CUPED technique)
-\end{itemize}
+
+* Designing more sensitive metric (e.g., https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/beyond-power-analysis-metric-sensitivity-in-a-b-tests/)
+* Variance reduction for the mean estimator (e.g., CUPED technique)
+
 
 <!-- #### Other considerations -->
 <!-- method (point estimate and uncertainty estimate) -->
@@ -85,17 +82,15 @@ It is always desirable to achieve trustworthy results with less data to accelera
 ## Diff-in-diff analysis
 The diff-in-diff analysis applies when you have two groups whose pretreatment differences can be isolated and modeled so that post-treatment differences are the basis for causal estimates of the treatment effect. The key assumptions here include 
 
-\begin{itemize}
-\item Treatment independence
-\item After taking into account the pretreatment difference, the remaining gap is not because of external shocks. 
-\end{itemize}
+
+* Treatment independence
+* After taking into account the pretreatment difference, the remaining gap is not because of external shocks. 
+
 
 A famous class of questions that can be solved by diff-in-diff analysis is the optimization of search engine marketing - it is critical for search engines / advertisers to understand the effect of paid search advertising. However, this is not an easy problem for the following reasons -
 
-\begin{itemize}
-\item Difficulty in isolating the effect of paid search. Typically, the results from large companies show up in the organic results anyway. How do we know if the user would have clicked the organic results in the absence of paid search?
-\item Can't randomize the treatment status - Google will only display the additional ads link only if Google believes the possibility of being clicked is higher. Therefore, a simple comparison on the pages with ads and without ads is problematic due to the unequal baseline. 
-\end{itemize}
+* Difficulty in isolating the effect of paid search. Typically, the results from large companies show up in the organic results anyway. How do we know if the user would have clicked the organic results in the absence of paid search?
+* Can't randomize the treatment status - Google will only display the additional ads link only if Google believes the possibility of being clicked is higher. Therefore, a simple comparison on the pages with ads and without ads is problematic due to the unequal baseline. 
 
 To tackle this problem, Blake et al. managed to convince the powers at eBay to run a large-scale experiment where SEM was turned off for a portion of users - eBay decided to stop biddihng on any AdWords for 65 of 210 ``designated market areas'' (DMA) in the US for about eight weeks in 2012. The model they use to estimate the effect is linear model as follows
 
