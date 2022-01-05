@@ -10,6 +10,7 @@ tags: ["Statistical Decision Theory", "Bayesian Analysis"]
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
 
 As a statistician who often solves problems from a frequentist perspective but with a Bayesian soul (allegedly), statistical decision theory has always been an intriguing topic to me. Thanks to the holiday season, I finally got a chance to revisit this topic and I hope I can build up a more systematic understanding of it this time. To facilitate my mastery of the knowledge, I plan to learn by writing and sharing. As the very first step of this project, I’d like to cover the basic elements here in this blog post, including - (i) Motivation: what values can statistical decision theory offer? (ii) Notations and key concepts; (iii) Optimality criteria - how do we pick the \emph{optimal} decision among candidate decisions?
 
