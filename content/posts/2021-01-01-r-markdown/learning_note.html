@@ -17,9 +17,11 @@ tags: ["Experiments", "Causal Inference"]
 <li>Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction - by Donald Rubin and Guido Imbens</li>
 <li>Data Analysis Using Regression and Multilevel/Hierarchical Models - by Andrew Gelman and Jennifer Hill</li>
 </ul>
-<p>As a starting point, I’d like to summarize my learning from reading through the Chapter 5 (Experiments) of the book Business Data Science during my Christmas holiday.
-## Why experiments?
-Although correlation might be all that we need in some scenarios (for example, we might recommend movie  to those who watched movie  without recognizing the plausible underlying fact that these preferences can be caused by a third unseen signal, which is they all have very young kids who like cartoon musicals),  and for many real-world business problems it is critical for us to know if/how an  product change or price move alone can affect the outcome of interest (e.g., customer behavior, revenue, etc.). In scientific research, experiments are used for measuring the effect of an action is an experiment as we are able to manipulate the treatment variable independently from all other upstream influences to assess its impact on the outcome of interest. In the sections below, I shall first cover the gold-standard for establish causal statements, randomized controlled trials, followed by several near experimental methods, including diff-in-diff analysis, regression discontinuity and instrumental variables. In particular, I plan to leave the summary of instrumental variable method in a separate blog due to its intricacy.</p>
+<p>As a starting point, I’d like to summarize my learning from reading through the Chapter 5 (Experiments) of the book Business Data Science during my Christmas holiday.</p>
+<div id="why-experiments" class="section level2">
+<h2>Why experiments?</h2>
+<p>Although correlation might be all that we need in some scenarios (for example, we might recommend movie  to those who watched movie  without recognizing the plausible underlying fact that these preferences can be caused by a third unseen signal, which is they all have very young kids who like cartoon musicals),  and for many real-world business problems it is critical for us to know if/how an  product change or price move alone can affect the outcome of interest (e.g., customer behavior, revenue, etc.). In scientific research, experiments are used for measuring the effect of an action is an experiment as we are able to manipulate the treatment variable independently from all other upstream influences to assess its impact on the outcome of interest. In the sections below, I shall first cover the gold-standard for establish causal statements, randomized controlled trials, followed by several near experimental methods, including diff-in-diff analysis, regression discontinuity and instrumental variables. In particular, I plan to leave the summary of instrumental variable method in a separate blog due to its intricacy.</p>
+</div>
 <div id="randomized-controlled-trials-rcts" class="section level2">
 <h2>Randomized Controlled Trials (RCTs)</h2>
 <p>The RCTs are arguably the gold standard among various possible forms of experiments as we can assign the treatment to subjects from the population of interest in a completely random manner to eliminate any dependence between the treatment variable and all other upstream influences.</p>
@@ -33,8 +35,6 @@ Although correlation might be all that we need in some scenarios (for example, w
 and therefore construct the <span class="math inline">\((1-\alpha)\%\)</span> confidence interval as</p>
 <p><span class="math display">\[ (\bar{y}_{1} - \bar{y}_{0}) \pm z_{\alpha} * \sqrt{(Var(\bar{y}_{1} - \bar{y}_{0}))} \]</span></p>
 <p>where <span class="math inline">\(z_{\alpha}\)</span> denotes the upper-<span class="math inline">\(\alpha\)</span> quantile of a standard normal distribution.</p>
-<!-- ### Uncertainty quantification -->
-<!-- Under the assumptions of experimental units being independent from each other, we can estimate the standard error  -->
 </div>
 <div id="practical-knowledge" class="section level3">
 <h3>Practical knowledge</h3>
@@ -55,9 +55,7 @@ and therefore construct the <span class="math inline">\((1-\alpha)\%\)</span> co
 </div>
 <div id="unrepresentative-samples" class="section level4">
 <h4>Unrepresentative samples</h4>
-<p>Weighting is typically used to map from the sample of individuals in the experiment to the future treatment population if we know certain subpopulations are harder to be sampled.
-<!-- #### Perfect experiments are rare -->
-<!-- We have to acknowledge perfect experiments are rare but this does not imply we will just stay there and do nothing.  --></p>
+<p>Weighting is typically used to map from the sample of individuals in the experiment to the future treatment population if we know certain subpopulations are harder to be sampled.</p>
 </div>
 <div id="improving-sensitivity" class="section level4">
 <h4>Improving sensitivity</h4>
@@ -66,9 +64,6 @@ and therefore construct the <span class="math inline">\((1-\alpha)\%\)</span> co
 <li>Designing more sensitive metric (e.g., <a href="https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/beyond-power-analysis-metric-sensitivity-in-a-b-tests/" class="uri">https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/beyond-power-analysis-metric-sensitivity-in-a-b-tests/</a>)</li>
 <li>Variance reduction for the mean estimator (e.g., CUPED technique)</li>
 </ul>
-<!-- #### Other considerations -->
-<!-- method (point estimate and uncertainty estimate) -->
-<!-- typical problems -->
 </div>
 </div>
 </div>
@@ -104,8 +99,4 @@ where <span class="math inline">\(\epsilon\)</span> is a small number that speci
 <p>Given a fixed <span class="math inline">\(\epsilon\)</span>, we filter out those data with <span class="math inline">\(r_{i}\)</span> falling outside <span class="math inline">\([-\epsilon, \epsilon]\)</span>, and then fit an ordinary least squares line to the remaining data under the following model specification</p>
 <p><span class="math display">\[ \mathbb{E}(y_{i}) = \alpha + \gamma I(r_{i} &gt; 0) + r_{i} (\beta_{0} + \beta_{1} I(r_{i} &gt; 0)) \]</span>
 Note that the treatment effect is parameterized by <span class="math inline">\(\gamma\)</span> in the model above, and we are only able to learn about the treatment effect at the threshold. As any RD analysis is sensitive to the size of the window size <span class="math inline">\(\epsilon\)</span>, it is advisable to try a range of window sizes and assess the stability of the results within a range of plausible values.</p>
-<!-- \begin{itemize} -->
-<!-- \item Continuity assumption: if the threshold were to move slightly, subjects switching treatment groups will behave similarly to those near them in their \emph{new} treatment group. In other words, we can look at the relationship between the forcing variable and the response on one side of the threshold and extrapolate to the other side.  -->
-<!-- \item  -->
-<!-- \end{itemize} -->
 </div>

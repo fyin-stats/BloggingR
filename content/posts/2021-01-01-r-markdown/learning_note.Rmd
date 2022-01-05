@@ -21,6 +21,7 @@ Now working as a statistician in industry, I still read computational statistics
 * Data Analysis Using Regression and Multilevel/Hierarchical Models - by Andrew Gelman and Jennifer Hill
 
 As a starting point, I'd like to summarize my learning from reading through the Chapter 5 (Experiments) of the book Business Data Science during my Christmas holiday. 
+
 ## Why experiments?
 Although correlation might be all that we need in some scenarios (for example, we might recommend movie \emph{Frozen} to those who watched movie \emph{Sing} without recognizing the plausible underlying fact that these preferences can be caused by a third unseen signal, which is they all have very young kids who like cartoon musicals), \textbf{it is clearly not equivalent to causation} and for many real-world business problems it is critical for us to know if/how an \emph{independent} product change or price move alone can affect the outcome of interest (e.g., customer behavior, revenue, etc.). In scientific research, experiments are used for measuring the effect of an action is an experiment as we are able to manipulate the treatment variable independently from all other upstream influences to assess its impact on the outcome of interest. In the sections below, I shall first cover the gold-standard for establish causal statements, randomized controlled trials, followed by several near experimental methods, including diff-in-diff analysis, regression discontinuity and instrumental variables. In particular, I plan to leave the summary of instrumental variable method in a separate blog due to its intricacy. 
 
@@ -43,9 +44,6 @@ $$ (\bar{y}_{1} - \bar{y}_{0}) \pm z_{\alpha} * \sqrt{(Var(\bar{y}_{1} - \bar{y}
 
 where $z_{\alpha}$ denotes the upper-$\alpha$ quantile of a standard normal distribution. 
 
-<!-- ### Uncertainty quantification -->
-<!-- Under the assumptions of experimental units being independent from each other, we can estimate the standard error  -->
-
 ### Practical knowledge
 The RCTs may appear to be easy conceptually, but one must be very aware of many practical considerations for the successful practice. Although we have to acknowledge perfect experiments are rare, this does not imply that we will just stay there and do nothing. 
 
@@ -63,28 +61,18 @@ The dependence between subjects mainly affect the uncertainty estimates and thre
 
 #### Unrepresentative samples
 Weighting is typically used to map from the sample of individuals in the experiment to the future treatment population if we know certain subpopulations are harder to be sampled. 
-<!-- #### Perfect experiments are rare -->
-<!-- We have to acknowledge perfect experiments are rare but this does not imply we will just stay there and do nothing.  -->
 
 #### Improving sensitivity
 It is always desirable to achieve trustworthy results with less data to accelerate innovations, and below are two possible directions to improve sensitivity in experiments 
 
-
 * Designing more sensitive metric (e.g., https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/beyond-power-analysis-metric-sensitivity-in-a-b-tests/)
 * Variance reduction for the mean estimator (e.g., CUPED technique)
-
-
-<!-- #### Other considerations -->
-<!-- method (point estimate and uncertainty estimate) -->
-<!-- typical problems -->
 
 ## Diff-in-diff analysis
 The diff-in-diff analysis applies when you have two groups whose pretreatment differences can be isolated and modeled so that post-treatment differences are the basis for causal estimates of the treatment effect. The key assumptions here include 
 
-
 * Treatment independence
 * After taking into account the pretreatment difference, the remaining gap is not because of external shocks. 
-
 
 A famous class of questions that can be solved by diff-in-diff analysis is the optimization of search engine marketing - it is critical for search engines / advertisers to understand the effect of paid search advertising. However, this is not an easy problem for the following reasons -
 
@@ -120,8 +108,3 @@ Given a fixed $\epsilon$, we filter out those data with $r_{i}$ falling outside 
 
 $$ \mathbb{E}(y_{i}) = \alpha + \gamma I(r_{i} > 0) + r_{i} (\beta_{0} + \beta_{1} I(r_{i} > 0)) $$
 Note that the treatment effect is parameterized by $\gamma$ in the model above, and we are only able to learn about the treatment effect at the threshold. As any RD analysis is sensitive to the size of the window size $\epsilon$, it is advisable to try a range of window sizes and assess the stability of the results within a range of plausible values. 
-
-<!-- \begin{itemize} -->
-<!-- \item Continuity assumption: if the threshold were to move slightly, subjects switching treatment groups will behave similarly to those near them in their \emph{new} treatment group. In other words, we can look at the relationship between the forcing variable and the response on one side of the threshold and extrapolate to the other side.  -->
-<!-- \item  -->
-<!-- \end{itemize} -->
