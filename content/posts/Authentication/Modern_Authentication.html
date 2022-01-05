@@ -1,0 +1,22 @@
+---
+title: "Modern Authentication"
+author: "Fan Yin"
+date: '2021-01-04T21:13:14-05:00'
+output: html_document
+categories: Computer Science
+tags: ["Authetication"]
+---
+
+
+
+<p>I came across a series of videos about how authentication works on YouTube ( Mr. Stuart Kwan is just an amazing instructor!) which helped me become less ignorant of this field.</p>
+<p>It appears that the modern web authentication requires the involvement of a third-party identity provider in addition to the browser (customer) and the website. The key advantage of this structure is that, when visiting multiple websites, instead of remembering different sets of names and passwords, the customer only needs to provide the same set of identity proof (e.g., name and password, smartcard, authenticator) to the same identity provider as long as this identity provider is trusted by all these websites. Under the pre-requisites that the website trusts the identity provider and the website knows the sign-in keys of the identity provider, a typical authentication process proceeds as follows</p>
+<ul>
+<li>A sign-in request is sent from the browser to the website.</li>
+<li>The website sends authentication request to the identity provider by using browser as an agent.</li>
+<li>The customer needs to provide identity proof to the identity provider.</li>
+<li>After the proof is verified, the identity provider sends token back to website through the browser.</li>
+<li>Now the website can validate the token because the website knows the sign-in keys of the identity provider.</li>
+</ul>
+<p>For subsequent calls from the same customer, the website might use the  they put on the browser during the initial authentication process to reduce the hassle for going through the above process again.</p>
+<p>Just to elaborate a bit on the  (as I have seen this word for years but never know its meaning until today) - in layman’s word, HTTP cookies refers to a piece of information that the website wants the browser to always send back on every subsequent request. It appears that cookies is the key to define a session with the website, which also helps me understand the session a bit better, but apparently there is still a long way for me to go to build up a systematic knowledge of the whole thing. Nevertheless, I am one step closer to it.</p>
