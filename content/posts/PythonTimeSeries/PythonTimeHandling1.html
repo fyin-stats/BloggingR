@@ -15,6 +15,17 @@ tags: ["Python Time Data"]
 <h2>Preparing the environment</h2>
 <div id="loading-required-r-libraries" class="section level3">
 <h3>Loading required R libraries</h3>
+<pre class="r"><code>ipak &lt;- function(pkg){
+  new.pkg &lt;- pkg[!(pkg %in% installed.packages()[, &quot;Package&quot;])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  try(sapply(pkg, require, character.only = TRUE), silent = TRUE)
+}
+packages &lt;- c(&quot;reticulate&quot;)
+ipak(packages)</code></pre>
+<pre><code>## Warning: package &#39;reticulate&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## reticulate 
+##       TRUE</code></pre>
 </div>
 <div id="set-up-the-r-python-environment" class="section level3">
 <h3>Set up the R-Python environment</h3>
@@ -44,7 +55,7 @@ import numpy as np</code></pre>
 <pre class="python"><code># find out the difference
 timestamp_diff = timestamp_now_UTC - timestamp_UTC
 print(timestamp_diff)</code></pre>
-<pre><code>## 537 days 06:56:37.612700</code></pre>
+<pre><code>## 537 days 06:59:21.728075</code></pre>
 <p>However, pandas does not provide us an easy way to convert this difference into a number representing this difference in the unit of days, hours and minutes. To this end, we might want to leverage some functions in numpy.</p>
 </div>
 <div id="convert-time-difference-into-numbers-using-numpy" class="section level2">
@@ -66,5 +77,5 @@ print(timestamp_diff_s)
 #
 # timestamp_diff_s_float = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.float32)
 # print(timestamp_diff_s_float)</code></pre>
-<pre><code>## 46421797</code></pre>
+<pre><code>## 46421961</code></pre>
 </div>

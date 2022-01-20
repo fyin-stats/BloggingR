@@ -17,14 +17,14 @@ In this blog, I'll summarize a generic way to find out the number of seconds, mi
 ## Preparing the environment
 
 ### Loading required R libraries
-```{r library, include=FALSE}
+```{r library, message=FALSE}
 ipak <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
   if (length(new.pkg))
     install.packages(new.pkg, dependencies = TRUE)
   try(sapply(pkg, require, character.only = TRUE), silent = TRUE)
 }
-packages <- c("dplyr","ggplot2","reticulate")
+packages <- c("reticulate")
 ipak(packages)
 ```
 
