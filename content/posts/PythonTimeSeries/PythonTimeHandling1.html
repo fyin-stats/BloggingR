@@ -1,0 +1,70 @@
+---
+title: "Handling Time in Python"
+author: "Fan Yin"
+date: '2021-01-19T21:13:14-05:00'
+output: html_document
+categories: Time Series
+tags: ["Python Time Data"]
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<p>In this blog, I’ll summarize a generic way to find out the number of seconds, minutes, days between two time points in Python using the functions provided in the powerful pandas and numpy libraries. Thanks to the brilliant R package reticulate, I am able to run Python codes in R and write this blog comfortably using R markdown.</p>
+<div id="preparing-the-environment" class="section level2">
+<h2>Preparing the environment</h2>
+<div id="loading-required-r-libraries" class="section level3">
+<h3>Loading required R libraries</h3>
+</div>
+<div id="set-up-the-r-python-environment" class="section level3">
+<h3>Set up the R-Python environment</h3>
+<pre class="r"><code>library(reticulate)
+# use_python(Sys.which(&quot;python&quot;))
+# use_condaenv(&quot;py3.7&quot;, required = TRUE)
+use_condaenv(&quot;r-reticulate&quot;)</code></pre>
+</div>
+<div id="install-required-python-libraries" class="section level3">
+<h3>Install required Python libraries</h3>
+<pre class="r"><code>py_install(&quot;pandas&quot;) # install pandas if it is not available
+py_install(&quot;numpy&quot;)</code></pre>
+</div>
+<div id="import-required-python-libraries" class="section level3">
+<h3>Import required Python libraries</h3>
+<pre class="python"><code>import pandas as pd
+import numpy as np</code></pre>
+</div>
+</div>
+<div id="timestamps-in-pandas" class="section level2">
+<h2>Timestamps in pandas</h2>
+<p>In pandas, we can access the current time easily via</p>
+<pre class="python"><code>timestamp_now_UTC = pd.Timestamp.now(tz=&quot;UTC&quot;)</code></pre>
+<p>We can also construct an arbitrary time by setting up the year, month, day, hour, minute and even second</p>
+<pre class="python"><code>timestamp_UTC = pd.Timestamp(year=2020, month = 8, day = 1, hour = 1, minute = 1, second = 25, tz=&quot;UTC&quot;)</code></pre>
+<p>We can find out the difference between the above two timestamps by</p>
+<pre class="python"><code># find out the difference
+timestamp_diff = timestamp_now_UTC - timestamp_UTC
+print(timestamp_diff)</code></pre>
+<pre><code>## 537 days 06:56:37.612700</code></pre>
+<p>However, pandas does not provide us an easy way to convert this difference into a number representing this difference in the unit of days, hours and minutes. To this end, we might want to leverage some functions in numpy.</p>
+</div>
+<div id="convert-time-difference-into-numbers-using-numpy" class="section level2">
+<h2>Convert time difference into numbers using numpy</h2>
+<p>If we want to know the difference in the unit of hours</p>
+<pre class="python"><code>#
+UNIT = &quot;h&quot;
+timestamp_diff_h = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.int32)
+print(timestamp_diff_h)
+#
+# timestamp_diff_h_float = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.float32)
+# print(timestamp_diff_h_float)</code></pre>
+<pre><code>## 12894</code></pre>
+<p>If we want to know the difference in the unit of seconds</p>
+<pre class="python"><code>#
+UNIT = &quot;s&quot;
+timestamp_diff_s = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.int32)
+print(timestamp_diff_s)
+#
+# timestamp_diff_s_float = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.float32)
+# print(timestamp_diff_s_float)</code></pre>
+<pre><code>## 46421797</code></pre>
+</div>
