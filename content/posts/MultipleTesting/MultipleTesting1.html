@@ -1,0 +1,28 @@
+---
+title: "Multiple Testing"
+author: "Fan Yin"
+date: '2021-01-25T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Hypothesis Testing"]
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<p>Multiple testing has always been a fascinating topic for me. I still vividly remember the ``good old days’’ when I use Bonferroni corrections by default when testing multiple hypothesis simultaneously without understanding the rationale. This time I will try to facilitate my mastery of this topic by writing a blog about it.</p>
+<p>Let’s say that we are conducting experiments to decide whether a two-sided coin is fair. To ensure we have a reasonable sample size, we flip the coin for 10 times. We may claim the coin to be unfair if all outcomes are head, becuase the probability of having 10 heads under the assumption of fair coin is <span class="math inline">\(\frac{1}{1024}\)</span>.</p>
+<p>Assuming that are very diligent and decide to repeat our experiment for <span class="math inline">\(100\)</span> runs, and conclude the coin to be unfair if at least one of our experiment run results in 10 heads. Under the assumption of fair coin, the probability of having 10 heads in at least one of our runs is equal to <span class="math inline">\(1 - (\frac{1023}{1024})^{100} \approx 0.093\)</span>. This implies that we will have about <span class="math inline">\(9\%\)</span> chance to incorrectly conclude that a coin is not fair even though we use a very stringent rule for judging a coin to be unfair.</p>
+<p>The approaches for handling this type of problem can be divided into two categories depending on their goal. Let’s denote the i-th null hypothesis as <span class="math inline">\(H_{0,i}\)</span>, and the i-th alternative hypothesis as <span class="math inline">\(H_{1,i}\)</span>, we have</p>
+<ul>
+<li>Family-wise error rate: <span class="math inline">\(FWER = P(\text{reject any} H_{0,i} | H_{0,i})\)</span>
+<ul>
+<li>Bonferroni’s method</li>
+<li>Siday’s method (only applicable to the case where the hypotheses are independent)</li>
+<li>Holm’s method: stepwise method.</li>
+</ul></li>
+<li>False discovery rate: the expected value of the number of false rejections over the number of rejections.
+<ul>
+<li>Benjamini-Hochberg Method.</li>
+</ul></li>
+</ul>
