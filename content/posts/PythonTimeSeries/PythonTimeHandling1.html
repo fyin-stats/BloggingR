@@ -55,7 +55,7 @@ import numpy as np</code></pre>
 <pre class="python"><code># find out the difference
 timestamp_diff = timestamp_now_UTC - timestamp_UTC
 print(timestamp_diff)</code></pre>
-<pre><code>## 537 days 06:59:21.728075</code></pre>
+<pre><code>## 557 days 05:28:08.942866</code></pre>
 <p>However, pandas does not provide us an easy way to convert this difference into a number representing this difference in the unit of days, hours and minutes. To this end, we might want to leverage some functions in numpy.</p>
 </div>
 <div id="convert-time-difference-into-numbers-using-numpy" class="section level2">
@@ -68,7 +68,7 @@ print(timestamp_diff_h)
 #
 # timestamp_diff_h_float = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.float32)
 # print(timestamp_diff_h_float)</code></pre>
-<pre><code>## 12894</code></pre>
+<pre><code>## 13373</code></pre>
 <p>If we want to know the difference in the unit of seconds</p>
 <pre class="python"><code>#
 UNIT = &quot;s&quot;
@@ -77,5 +77,5 @@ print(timestamp_diff_s)
 #
 # timestamp_diff_s_float = timestamp_diff.to_numpy().astype(&quot;timedelta64&quot; + &quot;[&quot; + UNIT + &quot;]&quot;).astype(np.float32)
 # print(timestamp_diff_s_float)</code></pre>
-<pre><code>## 46421961</code></pre>
+<pre><code>## 48144488</code></pre>
 </div>

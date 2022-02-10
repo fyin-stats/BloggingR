@@ -1,0 +1,36 @@
+---
+title: "HierarchicalModelCausalInference"
+author: "Fan Yin"
+date: '2021-01-25T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Causal Inference"]
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<p>When should we use hierarchical model for causal inference? This question has bothered me for years. Thanks to this technical report (<a href="http://www.stat.columbia.edu/~gelman/research/published/HierarchicalCausal.pdf" class="uri">http://www.stat.columbia.edu/~gelman/research/published/HierarchicalCausal.pdf</a>) by Avi Feller and Andrew Gelman, this question became less mysterious to me.</p>
+<p>According to their explanantion, the hierarchical model can aid causal inference when dealing with the following problems</p>
+<ul>
+<li>Accouting for data collection: we need to account for any individual of group charateristics that are predictive of treatment assignment or group characteristics that are predictive of treatment assignment and inclusion in the dataset.</li>
+<li>Adjusting for unmeasured covariates: In observation studies, it is necessary to adjust for differences between treated and control items.</li>
+<li>Modeling variation in treatment effects: sometimes we are not only interested in the average treatment effect but also in how the effect varies across the population.</li>
+</ul>
+<div id="accouting-for-data-collection" class="section level2">
+<h2>Accouting for data collection</h2>
+<div id="stratified-experiments" class="section level3">
+<h3>Stratified experiments</h3>
+<p>Random assignment depends on one or more observed covariates, for example, treatment is randomly assigned to half men and half women in a study population.</p>
+</div>
+<div id="cluster-randomized-experiments" class="section level3">
+<h3>Cluster-randomized experiments</h3>
+<p>Randomization happens at the cluster level</p>
+</div>
+<div id="split-plot-design" class="section level3">
+<h3>Split-plot design</h3>
+</div>
+<div id="longitudinal-and-repeated-measurements" class="section level3">
+<h3>Longitudinal and repeated measurements</h3>
+</div>
+</div>

@@ -1,0 +1,158 @@
+---
+title: "PyTorch basics"
+author: "Fan Yin"
+date: "2/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+Wants to be a cool kid in data science? Let's begin studying DEEP LEARNING by picking up some basic commands in PyTorch. Unfortunately, due to some errors encountered while installing the torch library, I shall not run the codes in this file.
+
+<!-- Again, thanks to brilliant R package reticulate, I am able to run Python codes in R and write this blog comfortably using R markdown. -->
+
+## Preparing the environment
+
+### Loading required R libraries
+```{r library, message=FALSE}
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  try(sapply(pkg, require, character.only = TRUE), silent = TRUE)
+}
+packages <- c("reticulate")
+ipak(packages)
+```
+
+### Set up the R-Python environment
+```{r python, message=FALSE}
+library(reticulate)
+# use_python(Sys.which("python"))
+# use_condaenv("py3.7", required = TRUE)
+use_condaenv("r-reticulate")
+```
+
+### Install required Python libraries
+```{r python library installation, message=FALSE, eval = F}
+py_install("pandas") # install pandas if it is not available
+py_install("numpy")
+py_install("torch")
+```
+
+### Import required Python libraries
+```{python load library, message = FALSE, eval = FALSE}
+import pandas as pd
+import numpy as np
+import torch
+```
+
+
+## Tensor
+
+### Creating tensor from Python lists
+```{python creating tensor, message = FALSE, eval = FALSE}
+points = torch.zeros(6)
+points = torch.tensor([[1.0, 4.0], [2.0, 1.0], [3.0, 5.0]])
+```
+
+### Tensor storage
+```{python storage, message = FALSE, eval = FALSE}
+points = torch.tensor([[1.0, 4.0], [2.0, 1.0], [3.0, 5.0]])
+points_storage = points.storage()
+# changeing the value of a storage changes the content of its referring tensor
+points_storage[0] = 100.0
+print(points)
+```
+
+### Indexing tensors
+```{python tensor index, message = FALSE, eval = FALSE}
+points = torch.tensor([[1.0, 4.0], [2.0, 1.0], [3.0, 5.0]])
+#
+points[1:] # all rows after first
+points[1:,:] # all rows after first, all columns
+points[1:,0] # all rows after first, first column
+# convert to numpy
+points_np = points.numpy()
+# obtain a pytorch tensor from a numpy array
+points = torch.from_numpy(points_np)
+```
+
+### Saving tensor 
+```{python save tensor, message = FALSE, eval = FALSE}
+# 
+torch.save(points, "./mypoints.t")
+#
+with open("./mypoints2.t", "wb") as f:
+torch.save(points, f)
+# 
+with open("./mypoints2.t", "wb") as f:
+points = torch.load(f)
+```
+
+## Regression analysis with PyTorch
+
+We first generate data as follows
+```{python data1, message = FALSE, eval = FALSE}
+torch.manual_seed(1)
+#
+x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim = 1)
+y = x.pow(2) + 0.2 * torch.rand(x.size())
+#
+x = Variable(x)
+y = Variable(y)
+```
+
+Then we can define the model class
+```{python define, message = FALSE, eval = FALSE}
+class Net(torch.nn.Module):
+def __init__(self, n_feature, n_hidden, n_output):
+super(Net, self).__init__()
+self.hidden = torch.nn.Linear(n_feature, n_hidden)
+self.predict = torch.nn.Linear(n_hidden, n_output)
+
+def forward(self, x):
+x = torch.nn.functional.relu(self.hidden(x))
+x = self.predict(x)
+return(x)
+```
+
+We can create a model instance and construct the criterion and optimizer as follows
+```{python optimizer, message = FALSE, eval = FALSE}
+myNet = Net(1, 20, 1)
+criterion = torch.nn.MSELoss(size_average = True)
+optimizer = torch.optim.SGD(myNet.parameters(), lr = 0.1) # torch.optim.Adam
+```
+
+To train a model, we can rely on the gradient descent 
+```{python model train, message = FALSE, eval = FALSE}
+for epoch in range(500):
+# make predictions
+y_pred = myNet(x)
+# calculate the loss
+loss = criterion(y_pred, y)
+# zero the gradient
+optimizer.zero_grad()
+# backpropagation
+loss.backward()
+# apply gradients
+optimizer.step()
+#
+print("epoch {}, loss {}".format(epoch, loss.item()))
+```
+
+Note one can also rely on the nn.Sequential module from PyTorch to construct the network
+```{python nnSequential, message = FALSE, eval = FALSE}
+# 
+net = torch.nn.Sequential(
+torch.nn.Linear(1, 10),
+torch.nn.ReLU(),
+torch.nn.Linear(10, 10),
+torch.nn.ReLU(),
+torch.nn.Linear(10,1)
+)
+# 
+```

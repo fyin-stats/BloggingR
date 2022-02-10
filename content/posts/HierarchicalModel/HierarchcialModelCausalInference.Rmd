@@ -1,0 +1,35 @@
+---
+title: "HierarchicalModelCausalInference"
+author: "Fan Yin"
+date: '2021-01-25T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Causal Inference"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+When should we use hierarchical model for causal inference? This question has bothered me for years. Thanks to this technical report (http://www.stat.columbia.edu/~gelman/research/published/HierarchicalCausal.pdf) by Avi Feller and Andrew Gelman, this question became less mysterious to me. 
+
+According to their explanantion, the hierarchical model can aid causal inference when dealing with the following problems
+
+* Accouting for data collection: we need to account for any individual of group charateristics that are predictive of treatment assignment or group characteristics that are predictive of treatment assignment and inclusion in the dataset.
+* Adjusting for unmeasured covariates: In observation studies, it is necessary to adjust for differences between treated and control items.
+* Modeling variation in treatment effects: sometimes we are not only interested in the average treatment effect but also in how the effect varies across the population.
+
+## Accouting for data collection
+
+
+### Stratified experiments
+Random assignment depends on one or more observed covariates, for example, treatment is randomly assigned to half men and half women in a study population.
+
+### Cluster-randomized experiments
+Randomization happens at the cluster level
+
+
+### Split-plot design
+
+### Longitudinal and repeated measurements
