@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
 
-In this blog, I shall summarize my learning about why and how we are able to identify the average treatment effect from randomized clinical trials (RCT). 
+In this blog, I shall summarize my learning about why and how we are able to identify the average treatment effect from randomized controlled trials (RCT). 
 
 Under the potential outcome framework \citep{rubin1974estimating}, we have $n$ i.i.d samples $(X_{i}, W_{i}, Y_{i}(1), Y_{i}(0)) \in \mathbb{R}^{d} \times \{0, 1\} \times \mathbb{R} \times \mathbb{R}$, with the individual causal effect being defined as 
 
