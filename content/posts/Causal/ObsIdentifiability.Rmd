@@ -1,0 +1,81 @@
+---
+title: "Identifiability in Observational studies"
+author: "Fan Yin"
+date: '2021-02-17T21:13:14-05:00'
+output: html_document
+bibliography: sample.bib
+categories: Causal Inference
+tags: ["Causal Inference"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+In an earlier blog, I summarized my learning about why and how we are able to identify the average treatment effect from randomized controlled trials (RCT). However, in real-world applicationbs, it is not always feasible to carry out RCT due to various possible reasons (e.g., legal, ethical, etc.), and we often need to rely on observational studies. 
+
+In observational studies, the treatment assignment is not purely random, and may depend on covariates $X$. As a result, the observed covariate distributions of treated and control can be different. We call a third variable that is related to both the treatment and the response as a confounder. 
+
+In RCT, the distribution of $Y|W=0$ is the same as the distribution of $Y(0)$, but this relationship does not hold for observational studies. In order to conduct causal inference under observational data, one fundamental assumption that we need to make is the \textbf{unconfoundedness}
+
+$$ \{ Y_{i}(0), Y_{i}(1) \perp W_{i} | X_{i} \} $$
+
+The implication of this assumption is that we can measure all confounders, which is critical to ensure the identifiability of the ATE (note that the presence of unobserved confounders makes it impossible to separate correlation and causality). Potential solutions for unmeasured confounding include \textbf{instrumental variables} (a variable that is related to the treatment assignment but not the outcome), and \textbf{sensitivity analysis} which can help us how much unmeasured confounding to flip our conclusions, which are beyond the scope of this blog. 
+
+In this blog, I shall focus on two solutions to estimate ATE with observational data
+
+* Regression adjustment: difference between conditional expectation.
+* Inverse-propensity weighting: to adjust for biases in the treatment assignment. Weighting groups so that control look like treated in terms of distribution of $X$.
+
+## Regression adjustment
+We can leverage the assumption of unconfoundedness
+
+<!-- $$ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb[Y_{i}(1) - Y_{i}(0)] $$ -->
+
+\begin{align} 
+\tau \equiv \mathbb{E}[\Delta_{i}] & = \mathbb{E}[Y_{i}(1) - Y_{i}(0)] \nonumber \\
+                                   & = \mathbb{E}[\mathbb{E}[Y_{i}(1) - Y_{i}(0)] | X_{i}] \ \ \text{(conditional expectation)} \nonumber \\
+                                   & = \mathbb{E}[\mathbb{E}[Y_{i}(1) | W_{i} = 1, X_{i}] - \mathbb{E}[\mathbb{E}[Y_{i}(0) | W_{i} = 0, X_{i}]  \ \ \text{(Unconfoundedness)} \nonumber \\ 
+                                   & = \mathbb{E}[\mathbb{E}[Y_{i} | W_{i} = 1, X_{i}] - \mathbb{E}[\mathbb{E}[Y_{i} | W_{i} = 0, X_{i}] \ \ \text{(Consistency)}
+\end{align} 
+
+where the conditional expectations in the last line can be estimated via regression. 
+
+## Inverse-propensity weighting 
+The propensity score is defined as the probability of treatment given observed covariates
+
+$$ e(x) \equiv P(W_{i} = 1 | X_{i} = x) \ \ \forall x \in \mathcal{X} $$
+
+and the overlap assumption gives $\eta < e(x) < 1-\eta$, $\forall x \in \mathcal{X}$. 
+
+The Inverse-propensity weighting (IPW) estimator is indeed a type of Horvitz-Thompson estimator
+
+$$ \hat{\tau}_{IPW} \equiv \frac{1}{n} \sum_{i=1}^{n} [\frac{W_{i}Y_{i}}{\hat{e}(X_{i})} - \frac{ (1- W_{i})Y_{i}}{1 - \hat{e}(X_{i})}  ] $$
+which weights subjects by the inverse probability of treatment received creates a synthetic sample in which treatment assignment is independent of baseline covariates (i.e., turning observation study into a pseudo-randomized trial by re-weighting samples).
+
+<!-- Under the potential outcome framework \citep{rubin1974estimating}, we have $n$ i.i.d samples $(X_{i}, W_{i}, Y_{i}(1), Y_{i}(0)) \in \mathbb{R}^{d} \times \{0, 1\} \times \mathbb{R} \times \mathbb{R}$, with the individual causal effect being defined as  -->
+
+<!-- $$ \Delta_{i} \equiv Y_{i}(1) - Y_{i}(0) $$ -->
+
+<!-- where $Y_{i}(1)$ denotes the outcome of individual $i$ \emph{if} it were to receive the treatment, $Y_{i}(0)$ denotes the outcome of individual $i$ \emph{if} it were NOT to receive the treatment. Here, we focus on the scenario under which each individual either receives or not receives the treatment ($W_{i} = 0, 1$), and also assume that the treatment is stable across individuals and the individuals do not interfere with each other.  -->
+
+<!-- The fundamental challenge here is that we have a missing data problem, that is, $\Delta_{i}$ is never observed, though we might imagine a \emph{counterfactual} world where everything is the same except the cause. The implication here is that we cannot estimate the individual causal effect of the treatment, but we might hope to estimate the average treatment effect (ATE) -->
+
+<!-- $$ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb[Y_{i}(1) - Y_{i}(0)] $$ -->
+
+<!-- Under randomized controlled trials (RCT), we have the following assumptions -->
+
+<!-- * Consistency: $Y_{i} = W_{i} Y_{i}(1) + (1 - W_{i}) Y_{i}(0)$. -->
+<!-- * Random treatment assignment: $W_{i}$ is independent of $(Y_{i}(1), Y_{i}(0), X_{i})$. -->
+
+<!-- therefore, we have -->
+
+<!-- $$ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb{E}[Y_{i}(1) - Y_{i}(0)] \stackrel{(1)}{=} \mathbb{E}[Y_{i}(1) | W_{i} = 1] - \mathbb{E}[Y_{i}(0) | W_{i} = 0] \stackrel{(2)}{=} \mathbb{E}[Y_{i} | W_{i} = 1] - \mathbb{E}[Y_{i} | W_{i} = 0] $$ -->
+
+<!-- where (1) is based on the assumption of random treatment assignment, and (2) is based on the assumption of consistency. Therefore, we can estimate $\tau$ by the estimator below -->
+
+<!-- $$ \hat{\tau} = \frac{1}{n_{1}} \sum_{W_{i}=1} Y_{i} -  \frac{1}{n_{0}} \sum_{W_{i}=0} Y_{i}$$ -->
+
+
+

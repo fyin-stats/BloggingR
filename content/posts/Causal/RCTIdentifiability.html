@@ -16,7 +16,7 @@ tags: ["Causal Inference"]
 <p><span class="math display">\[ \Delta_{i} \equiv Y_{i}(1) - Y_{i}(0) \]</span></p>
 <p>where <span class="math inline">\(Y_{i}(1)\)</span> denotes the outcome of individual <span class="math inline">\(i\)</span>  it were to receive the treatment, <span class="math inline">\(Y_{i}(0)\)</span> denotes the outcome of individual <span class="math inline">\(i\)</span>  it were NOT to receive the treatment. Here, we focus on the scenario under which each individual either receives or not receives the treatment (<span class="math inline">\(W_{i} = 0, 1\)</span>), and also assume that the treatment is stable across individuals and the individuals do not interfere with each other.</p>
 <p>The fundamental challenge here is that we have a missing data problem, that is, <span class="math inline">\(\Delta_{i}\)</span> is never observed, though we might imagine a  world where everything is the same except the cause. The implication here is that we cannot estimate the individual causal effect of the treatment, but we might hope to estimate the average treatment effect (ATE)</p>
-<p><span class="math display">\[ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb[Y_{i}(1) - Y_{i}(0)] \]</span></p>
+<p><span class="math display">\[ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb{E}[Y_{i}(1) - Y_{i}(0)] \]</span></p>
 <p>Under randomized controlled trials (RCT), we have the following assumptions</p>
 <ul>
 <li>Consistency: <span class="math inline">\(Y_{i} = W_{i} Y_{i}(1) + (1 - W_{i}) Y_{i}(0)\)</span>.</li>

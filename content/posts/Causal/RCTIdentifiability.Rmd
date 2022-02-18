@@ -23,7 +23,7 @@ where $Y_{i}(1)$ denotes the outcome of individual $i$ \emph{if} it were to rece
 
 The fundamental challenge here is that we have a missing data problem, that is, $\Delta_{i}$ is never observed, though we might imagine a \emph{counterfactual} world where everything is the same except the cause. The implication here is that we cannot estimate the individual causal effect of the treatment, but we might hope to estimate the average treatment effect (ATE)
 
-$$ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb[Y_{i}(1) - Y_{i}(0)] $$
+$$ \tau \equiv \mathbb{E}[\Delta_{i}] = \mathbb{E}[Y_{i}(1) - Y_{i}(0)] $$
 
 Under randomized controlled trials (RCT), we have the following assumptions
 
