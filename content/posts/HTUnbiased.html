@@ -1,0 +1,33 @@
+---
+title: "Unbiasedness of Horvitz Thompson Estimator"
+author: "Fan Yin"
+date: '2021-02-19T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Statistics", "Survey Sampling"]
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<p>When dealing with survey data where different individuals / sub-groups are sampled with different probabilities, a simple average estimator is not able to give us an unbiased estimate of the population mean, and the Horvitz-Thompson estimator will come to the rescue here.</p>
+<div id="notations" class="section level2">
+<h2>Notations</h2>
+<p>To give a formal description of the scenario, we start with defining the key mathematical notations</p>
+<ul>
+<li><span class="math inline">\(\mathcal{P} = \{1, \ldots, N \}\)</span> be a finite population of interest.</li>
+<li>For each <span class="math inline">\(i \in \mathcal{P}\)</span>, let <span class="math inline">\(y_{i}\)</span> be a value of interest associated with unit <span class="math inline">\(i\)</span></li>
+<li>Let <span class="math inline">\(\mathbf{s} = \{i_{1}, ..., i_{n} \}\)</span> be a subset of distinct elements of <span class="math inline">\(\mathcal{P}\)</span>, which is a sample selected with selection probability <span class="math inline">\(p(\mathbf{s})\)</span>, where <span class="math inline">\(p\)</span> is known and the value <span class="math inline">\(y_{i}\)</span> is observed iff <span class="math inline">\(i \in \mathbf{s}\)</span>.</li>
+<li>Sample inclusion probability: <span class="math inline">\(\pi_{i}\)</span> is the probability that <span class="math inline">\(i \in \mathbf{s}, i=1,\ldots,N\)</span>.</li>
+<li>Population quantity of interest: <span class="math inline">\(Y = \sum_{i=1}^{N} y_{i}\)</span>.</li>
+</ul>
+</div>
+<div id="horvitz-thompson-estimator" class="section level2">
+<h2>Horvitz-Thompson estimator</h2>
+<p>The Horvitz-Thompson estimator of the population total is defined as (assuming <span class="math inline">\(\pi_{i} &gt; 0\)</span> for <span class="math inline">\(i=1,\ldots,N\)</span>)</p>
+<p><span class="math display">\[ \hat{Y}_{HT} = \sum_{i=1}^{n} y_{i}/\pi_{i} \]</span>
+## Unbiasedness of Horvitz-Thompson estimator
+Define <span class="math inline">\(t_{i} = 1\)</span> if <span class="math inline">\(i \in \mathbf{s}\)</span>, and <span class="math inline">\(0\)</span> otherwise, for <span class="math inline">\(i=1, \ldots, N\)</span>. Therefore we have</p>
+<p><span class="math display">\[ \mathbb{E}[\hat{Y}_{HT}] = \mathbb{E}[ \sum_{i=1}^{n} y_{i}/\pi_{i} ] = \mathbb{E}[ \sum_{i=1}^{N} t_{i} y_{i}/\pi_{i} ] = \sum_{i=1}^{N} \mathbb{E}[t_{i} / \pi_{i}] \mathbb{E}[y_{i}] = \sum_{i=1}^{N} y_{i}\]</span>
+where we take advantage of the linearity of the expectation, the facts that <span class="math inline">\(t_{i}\)</span> is independent of <span class="math inline">\(y_{i}\)</span> and <span class="math inline">\(\mathbb{E}[t_{i}] = \pi_{i}\)</span>.</p>
+</div>

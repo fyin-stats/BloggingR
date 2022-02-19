@@ -1,0 +1,34 @@
+---
+title: "Unbiasedness of Horvitz Thompson Estimator"
+author: "Fan Yin"
+date: '2021-02-19T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Statistics", "Survey Sampling"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+When dealing with survey data where different individuals / sub-groups are sampled with different probabilities, a simple average estimator is not able to give us an unbiased estimate of the population mean, and the Horvitz-Thompson estimator will come to the rescue here.
+
+## Notations
+To give a formal description of the scenario, we start with defining the key mathematical notations
+
+* $\mathcal{P} = \{1, \ldots, N \}$ be a finite population of interest.
+* For each $i \in \mathcal{P}$, let $y_{i}$ be a value of interest associated with unit $i$
+* Let $\mathbf{s} = \{i_{1}, ..., i_{n} \}$ be a subset of distinct elements of $\mathcal{P}$, which is a sample selected with selection probability $p(\mathbf{s})$, where $p$ is known and the value $y_{i}$ is observed iff $i \in \mathbf{s}$. 
+* Sample inclusion probability: $\pi_{i}$ is the probability that $i \in \mathbf{s}, i=1,\ldots,N$. 
+* Population quantity of interest: $Y = \sum_{i=1}^{N} y_{i}$. 
+
+## Horvitz-Thompson estimator
+The Horvitz-Thompson estimator of the population total is defined as (assuming $\pi_{i} > 0$ for $i=1,\ldots,N$)
+
+$$ \hat{Y}_{HT} = \sum_{i=1}^{n} y_{i}/\pi_{i} $$
+## Unbiasedness of Horvitz-Thompson estimator
+Define $t_{i} = 1$ if $i \in \mathbf{s}$, and $0$ otherwise, for $i=1, \ldots, N$. Therefore we have
+
+$$ \mathbb{E}[\hat{Y}_{HT}] = \mathbb{E}[ \sum_{i=1}^{n} y_{i}/\pi_{i} ] = \mathbb{E}[ \sum_{i=1}^{N} t_{i} y_{i}/\pi_{i} ] = \sum_{i=1}^{N} \mathbb{E}[t_{i} / \pi_{i}] \mathbb{E}[y_{i}] = \sum_{i=1}^{N} y_{i}$$
+where we take advantage of the linearity of the expectation, the facts that $t_{i}$ is independent of $y_{i}$ and $\mathbb{E}[t_{i}] = \pi_{i}$. 
