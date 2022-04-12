@@ -1,0 +1,43 @@
+---
+title: "LocalDifferentialPrivacy"
+author: "Fan Yin"
+date: '2022-04-11T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Differential Privacy"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+## Local differential privacy
+Local differential privacy (LDP) has emerged as a powerful tool to ensure individual privacy while allowing for meaningful statistical inference at the population level. We say a randomized algorithm $\mathcal{A}(\cdot): \Sigma \rightarrow \mathcal{Z}$ is $\epsilon-$locally differentially private ($\epsilon$-LDP) if for any pair of values $x, y \in \Sigma$ and any subset of output $S \subseteq \mathcal{Z}$, we have
+
+$$ P[\mathcal{A}(x) \in S] \leqslant e^{\epsilon} P[\mathcal{A}(y) \in S]$$
+
+LDP provides fine-grained control of the level of privacy (through the privacy budget $\epsilon$) on individual data while allowing meaningful statistical inference at the population level. One intuitive interpretation of LDP is that no matter what output is released from $\mathcal{A}$, it is approximately equally as likely to have come from one value $x \in Sigma$ as any other. 
+
+## Algorithms for achieving LDP
+Various algorithms can be used to achieve LDP and we introduce two of them in this section, namely, Laplace mechanism and 1-bit mechanism. The algorithms below require the data to range from $0$ to $m$, where $m > 0$. 
+
+### Laplace mechanism
+Under Laplace mechanism, consider the data $x \in [0, m]$, we ensure privacy by adding a random noise $\nu$ which follows the Laplace distribution $Lap(\frac{m}{\epsilon})$ to the user data x
+
+$$ \tilde{x} = x + \nu $$
+
+By sending back the $\tilde{x}$ to the server, we are able to ensure $\epsilon$-LDP.
+
+### 1-bit mechanism
+In the work of Ding et al. 2017, the researchers from Microsoft propose another mechanism to achieve LDP through 1-bit data collection. For each user with a counter $x$, the 1-bit randomization algorithm $\mathcal{A}$ generates a noisy bit (0 or 1) under the following mechanism 
+
+\begin{align*}
+\label{eq:LDP_1bit}
+\mathcal{A}_{\epsilon, m}(x) = & \begin{cases}
+    1, & \text{with probability} \ \frac{1}{e^{\epsilon} + 1} + \frac{x}{m} \cdot \frac{e^{\epsilon} - 1}{e^{\epsilon} + 1} \\
+    0, & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+By sending back the generated noisy bits back to the server, we will also be able to achieve LDP. 

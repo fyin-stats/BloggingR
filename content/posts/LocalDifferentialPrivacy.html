@@ -1,0 +1,40 @@
+---
+title: "LocalDifferentialPrivacy"
+author: "Fan Yin"
+date: '2022-04-11T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Differential Privacy"]
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<div id="local-differential-privacy" class="section level2">
+<h2>Local differential privacy</h2>
+<p>Local differential privacy (LDP) has emerged as a powerful tool to ensure individual privacy while allowing for meaningful statistical inference at the population level. We say a randomized algorithm <span class="math inline">\(\mathcal{A}(\cdot): \Sigma \rightarrow \mathcal{Z}\)</span> is <span class="math inline">\(\epsilon-\)</span>locally differentially private (<span class="math inline">\(\epsilon\)</span>-LDP) if for any pair of values <span class="math inline">\(x, y \in \Sigma\)</span> and any subset of output <span class="math inline">\(S \subseteq \mathcal{Z}\)</span>, we have</p>
+<p><span class="math display">\[ P[\mathcal{A}(x) \in S] \leqslant e^{\epsilon} P[\mathcal{A}(y) \in S]\]</span></p>
+<p>LDP provides fine-grained control of the level of privacy (through the privacy budget <span class="math inline">\(\epsilon\)</span>) on individual data while allowing meaningful statistical inference at the population level. One intuitive interpretation of LDP is that no matter what output is released from <span class="math inline">\(\mathcal{A}\)</span>, it is approximately equally as likely to have come from one value <span class="math inline">\(x \in Sigma\)</span> as any other.</p>
+</div>
+<div id="algorithms-for-achieving-ldp" class="section level2">
+<h2>Algorithms for achieving LDP</h2>
+<p>Various algorithms can be used to achieve LDP and we introduce two of them in this section, namely, Laplace mechanism and 1-bit mechanism. The algorithms below require the data to range from <span class="math inline">\(0\)</span> to <span class="math inline">\(m\)</span>, where <span class="math inline">\(m &gt; 0\)</span>.</p>
+<div id="laplace-mechanism" class="section level3">
+<h3>Laplace mechanism</h3>
+<p>Under Laplace mechanism, consider the data <span class="math inline">\(x \in [0, m]\)</span>, we ensure privacy by adding a random noise <span class="math inline">\(\nu\)</span> which follows the Laplace distribution <span class="math inline">\(Lap(\frac{m}{\epsilon})\)</span> to the user data x</p>
+<p><span class="math display">\[ \tilde{x} = x + \nu \]</span></p>
+<p>By sending back the <span class="math inline">\(\tilde{x}\)</span> to the server, we are able to ensure <span class="math inline">\(\epsilon\)</span>-LDP.</p>
+</div>
+<div id="bit-mechanism" class="section level3">
+<h3>1-bit mechanism</h3>
+<p>In the work of Ding et al. 2017, the researchers from Microsoft propose another mechanism to achieve LDP through 1-bit data collection. For each user with a counter <span class="math inline">\(x\)</span>, the 1-bit randomization algorithm <span class="math inline">\(\mathcal{A}\)</span> generates a noisy bit (0 or 1) under the following mechanism</p>
+<p><span class="math display">\[\begin{align*}
+\label{eq:LDP_1bit}
+\mathcal{A}_{\epsilon, m}(x) = &amp; \begin{cases}
+    1, &amp; \text{with probability} \ \frac{1}{e^{\epsilon} + 1} + \frac{x}{m} \cdot \frac{e^{\epsilon} - 1}{e^{\epsilon} + 1} \\
+    0, &amp; \text{otherwise}
+  \end{cases}
+\end{align*}\]</span></p>
+<p>By sending back the generated noisy bits back to the server, we will also be able to achieve LDP.</p>
+</div>
+</div>
