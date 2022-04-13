@@ -17,7 +17,7 @@ Local differential privacy (LDP) has emerged as a powerful tool to ensure indivi
 
 $$ P[\mathcal{A}(x) \in S] \leqslant e^{\epsilon} P[\mathcal{A}(y) \in S]$$
 
-LDP provides fine-grained control of the level of privacy (through the privacy budget $\epsilon$) on individual data while allowing meaningful statistical inference at the population level. One intuitive interpretation of LDP is that no matter what output is released from $\mathcal{A}$, it is approximately equally as likely to have come from one value $x \in Sigma$ as any other. 
+LDP provides fine-grained control of the level of privacy (through the privacy budget $\epsilon$) on individual data while allowing meaningful statistical inference at the population level. One intuitive interpretation of LDP is that no matter what output is released from $\mathcal{A}$, it is approximately equally as likely to have come from one value $x \in \Sigma$ as any other. 
 
 ## Algorithms for achieving LDP
 Various algorithms can be used to achieve LDP and we introduce two of them in this section, namely, Laplace mechanism and 1-bit mechanism. The algorithms below require the data to range from $0$ to $m$, where $m > 0$. 
