@@ -1,0 +1,25 @@
+---
+title: "Talking about a good sample"
+author: "Fan Yin"
+date: '2022-04-11T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Sampling"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+## Requirements of a good sample
+A \emph{perfect} sample would ideally be a ``scaled-down'' version of the population, mirroring every characteristic of the whole population. However, no such perfect sample can exist for complicated populations (even if it did exist, we would not know it was a perfect sample without measuring the whole population). Therefore, it is important for us to come up with a proper definition of a \emph{good} sample - a good sample will be representative in the sense that characteristis of interest in the population can ben estimated from the sample with a known degree of accuracy.  
+
+## Important concepts
+
+Observation unit
+Target population
+Sample
+Sampled population
+Sampling unit
+Sampling frame
