@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
 
-I came across a video titled "LinkedIn CEO Shares Advice On Leadership, Hiring and Firing" on YouTube. I found the first part of his interview was full of insightful quotes about life in general, and I'd like to take notes here.
+I came across a video titled "LinkedIn CEO Shares Advice On Leadership, Hiring and Firing" on YouTube. I found the first part of Jeff Weiner's interview was full of insightful quotes about life in general, and I'd like to take notes here.
 
 ## Five keys to happiness
 * To live in the moment
