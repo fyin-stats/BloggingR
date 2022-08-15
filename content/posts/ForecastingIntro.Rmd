@@ -1,0 +1,28 @@
+---
+title: "Some notes about time series forecasting"
+author: "Fan Yin"
+date: '2022-08-15T21:13:14-05:00'
+output: html_document
+categories: Statistics
+tags: ["Time Series", Forecasting"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+
+A time series is a series of data points indexed in time order. Most commonly, a time series is a sequence taken at successively equally spaced points in time. Forecasting is about predicting the future (an event of a trend) and as far I am concerned, statistical forecasting implies the use of statistics based on historical data to project what could happen in the future (e.g., sales, GDP, housing prices, etc.). 
+
+## Perspectives on Forecasting
+\textbf{Statistical perspective}: Given a specific problem and set of existing methods, how do we solve the problem best?
+\textbf{Machine Learning perspective}: Given several different forecasting problems, which methods should we have to address them?
+
+## Some Common Forecasting Problems
+We list some common forecasting problems in the table below and we examine them on the various aspects, including, 
+* Data size and people running the analysis
+* Forecasting horizon
+* Time granularity
+* Cadence of forecast
+* Human interaction
+* Other notes
