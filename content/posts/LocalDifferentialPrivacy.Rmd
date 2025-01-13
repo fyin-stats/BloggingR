@@ -10,7 +10,11 @@ tags: ["Differential Privacy"]
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script> -->
+
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
 
 ## Local differential privacy
 Local differential privacy (LDP) has emerged as a powerful tool to ensure individual privacy while allowing for meaningful statistical inference at the population level. We say a randomized algorithm $\mathcal{A}(\cdot): \Sigma \rightarrow \mathcal{Z}$ is $\epsilon-$locally differentially private ($\epsilon$-LDP) if for any pair of values $x, y \in \Sigma$ and any subset of output $S \subseteq \mathcal{Z}$, we have

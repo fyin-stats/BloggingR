@@ -1,0 +1,58 @@
+---
+title: "Convexity of Loss Functions"
+author: "Fan Yin"
+date: "2025-01-11"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script> -->
+
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+I would like to dig into the convexity of loss functions.
+
+## What is a convex function
+
+$f: X \rightarrow \mathbf{R}$, where $X$ is a convex subset of a real vector space, and $f$ is called convex if and only if
+
+$$f(t x_{1} + (1-t) x_{2}) \leq tf(x_1) + (1-t)f(x_2)$$
+
+<!-- After the recent job change, forecasting is now the focus of my work. Knowing what can be forecast and understanding the basic steps in forecasting are critical. For this purpose, I have started reading the book "Forecasting: Principles and Practice" by Rob J. Hyndman and George Athnaasopoulos.  -->
+
+<!-- ## What can be forecast -->
+
+<!-- The predictability of an event or a quantity depends on several factors including: -->
+
+<!-- * how well we understand the factors that contribute to it -->
+
+<!-- * how much data is available -->
+
+<!-- * how similar the future is to the past -->
+
+<!-- * whether the forecasts can affect the thing we are trying to forecast -->
+
+<!-- In forecasting, a key step is knowing when something can be forecast accurately, and when forecasts will be no betterh than tossing a coin. Good forecasts capture the genuine patterns and relationships which exist in the historical data, but do not replicate past events that will not occur again - we need to be able to distinguish between a random fluctuation that should be ignored, and a genuine pattern that should be modelled and extrapolated.  -->
+
+<!-- One common misunderstanding about forecast is that "forecasts are not possible in a changing environment". We acknowledge the fact that every environment is changing, but a good forecasting model captures the way in which things are changing.  -->
+
+<!-- ## Basic steps in forecasting -->
+
+<!-- A forecasting task typically consists of the following steps  -->
+
+<!-- * Problem definition: we need to understand the way the forecasts will be used, who requires the forecasts, and how the forecasting function fits within the organization requiring the forecasts. Therefore, it is important for forecaster to talk to those who will be involved in data collection, data manipulation and using the forecasts for planning. -->
+
+<!-- * Gathering information: statistical data and the accumulated expertise of the people who collect the data and use the forecasts. -->
+
+<!-- * Exploratory analysis: understanding the patterns, trend, seasonality, etc.  -->
+
+<!-- * Choosing and fitting models -->
+
+<!-- * Model evaluation -->
