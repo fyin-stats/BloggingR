@@ -1,0 +1,90 @@
+---
+title: "Advertising Key Metrics"
+author: "Fan Yin"
+date: "2025-07-31"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"></script> -->
+
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+I recently moved to advertising organization and I have always been wanting to summarize the key metrics in this space. 
+
+Advertising is a three-sided marketplace that involves advertisers, publishers and shoppers. In this marketplace, the advertisers compete for opportunity to influence customers (through bidding for impressions), the shoppers want to find the products they want earlier, while the publishers want to maximize advertising revenue without hurting shopper's or advertiser's experience. 
+
+## Ads publisher revenue
+Consider a pay-per-click business model when the advertiser pays a publisher when the ad is clicked. The ads publisher revenue is
+
+$$ PublisherRevenue = Impressions \ \times \ CTR \ \times CPC   $$
+where impressions correspond to the number of times the ads are shown, CTR corresponds to click-through-rate (number of clicks ads receive / number of impressions), and CPC stands for cost-per-click (amount of money the publisher charges for each click). Note that we can further decompose impressions into 
+
+$$ Impressions = PageRequests \ \times \ AdsDensity $$
+Combining them together, we have
+
+$$ PublisherRevenue = PageRequests \ \times \ AdsDensity \ \times \ CTR \ \times CPC $$
+This suggests that publisher can improve its revenue by attracting more traffic (increasing number of page requests), displaying more ads (increasing Ads density), displaying more attractive and relevant ads (improving CTR) and charging more from advertisers (increasing CPC). It is worth noting that for e-commerce platforms, advertising revenue is just part of the business and what matters more is if the platform is making money through advertising and retail as a whole.
+
+## Shopper Experience
+The shopper experience can be measured on various aspects, and needs to cover both short-term and long-term
+
+* Short-term
+  * Search engagement: clicks, search abandonment, search reformulation, etc.
+  * Shopper short-term spending
+* Long-term
+  * Shopper long-term spending
+
+## Advertiser: Return on Ads Spending (RoAS)
+Advertiser (e.g., Adidas) invests in ads to boost their sales, therefore, the key metric for advertiser is return on ads spending (RoAS). One commonly used definition is
+
+$$ RoAS = AdvertiserSales / AdvertiserSpending $$
+where 
+
+$$ AdvertiserSales = Conversions \ \times \ AvgPrice = Impressions \ \times \ CTR \ \times \ CVR \ \times \ AvgPrice$$
+and advertiser spending can be viewed as equal to publisher revenue (although it is not always the case given the potential third-party intermediaries, involvement of SSPs or DSPs, and revenue split with external publishers.)
+
+It is worth noting that RoAS is a nuanced topic as sometimes advertisers would want to take a more holistic view on their ads spending and use all revenues as their sales number. 
+
+<!-- $f: X \rightarrow \mathbf{R}$, where $X$ is a convex subset of a real vector space, and $f$ is called convex if and only if -->
+
+<!-- $$f(t x_{1} + (1-t) x_{2}) \leq tf(x_1) + (1-t)f(x_2)$$ -->
+
+<!-- After the recent job change, forecasting is now the focus of my work. Knowing what can be forecast and understanding the basic steps in forecasting are critical. For this purpose, I have started reading the book "Forecasting: Principles and Practice" by Rob J. Hyndman and George Athnaasopoulos.  -->
+
+<!-- ## What can be forecast -->
+
+<!-- The predictability of an event or a quantity depends on several factors including: -->
+
+<!-- * how well we understand the factors that contribute to it -->
+
+<!-- * how much data is available -->
+
+<!-- * how similar the future is to the past -->
+
+<!-- * whether the forecasts can affect the thing we are trying to forecast -->
+
+<!-- In forecasting, a key step is knowing when something can be forecast accurately, and when forecasts will be no betterh than tossing a coin. Good forecasts capture the genuine patterns and relationships which exist in the historical data, but do not replicate past events that will not occur again - we need to be able to distinguish between a random fluctuation that should be ignored, and a genuine pattern that should be modelled and extrapolated.  -->
+
+<!-- One common misunderstanding about forecast is that "forecasts are not possible in a changing environment". We acknowledge the fact that every environment is changing, but a good forecasting model captures the way in which things are changing.  -->
+
+<!-- ## Basic steps in forecasting -->
+
+<!-- A forecasting task typically consists of the following steps  -->
+
+<!-- * Problem definition: we need to understand the way the forecasts will be used, who requires the forecasts, and how the forecasting function fits within the organization requiring the forecasts. Therefore, it is important for forecaster to talk to those who will be involved in data collection, data manipulation and using the forecasts for planning. -->
+
+<!-- * Gathering information: statistical data and the accumulated expertise of the people who collect the data and use the forecasts. -->
+
+<!-- * Exploratory analysis: understanding the patterns, trend, seasonality, etc.  -->
+
+<!-- * Choosing and fitting models -->
+
+<!-- * Model evaluation -->
