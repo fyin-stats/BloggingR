@@ -52,6 +52,13 @@ and advertiser spending can be viewed as equal to publisher revenue (although it
 
 It is worth noting that RoAS is a nuanced topic as sometimes advertisers would want to take a more holistic view on their ads spending and use all revenues as their sales number. 
 
+## [xxxx] per mille
+In advertising space, we often calculate metrics at the scales of 1,000 impressions (per mille) and below is a list of common metrics
+
+* Cost per mille (CPM): What advertiser pays for 1,000 impressions.
+* Effective cost per mille (eCPM): This is a revenue-centric metric for publishers - it gives what advertiser earns for 1,000 impressions, taking into account factors like ad format and network fees.
+* Revenue per mille (RPM): This is also a revenue-centric metric for publishers, which measures how much publisher earn per 1,000 page views, considering all ad units on the page.
+
 <!-- $f: X \rightarrow \mathbf{R}$, where $X$ is a convex subset of a real vector space, and $f$ is called convex if and only if -->
 
 <!-- $$f(t x_{1} + (1-t) x_{2}) \leq tf(x_1) + (1-t)f(x_2)$$ -->
