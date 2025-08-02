@@ -18,7 +18,7 @@ menu:
       weight: 3
 params:
   author: Fan Yin, Ph.D.
-  description: Statistician at Microsoft
+  description: Machine Learning Scientist
   menu_item_separator: ' - '
   social:
     - icon: github
