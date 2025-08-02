@@ -2,9 +2,8 @@
 title: "Advertising Key Metrics"
 author: "Fan Yin"
 date: "2025-07-31"
-output:
-  html_document: default
-  pdf_document: default
+output: html_document
+tags: ["Advertising"]
 ---
 
 ```{r setup, include=FALSE}
